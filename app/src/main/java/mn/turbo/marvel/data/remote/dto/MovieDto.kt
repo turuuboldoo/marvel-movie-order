@@ -1,6 +1,7 @@
 package mn.turbo.marvel.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
+import mn.turbo.marvel.data.local.entiry.MovieEntity
 import mn.turbo.marvel.domain.model.Movie
 
 data class MovieDto(
@@ -35,12 +36,39 @@ data class MovieDto(
 ) {
     fun toMovie(): Movie {
         return Movie(
-            id = id,
-            title = title,
-            coverUrl = coverUrl,
-            duration = duration,
-            directedBy = directedBy,
-            releaseDate = releaseDate
+            boxOffice,
+            chronology,
+            coverUrl,
+            directedBy,
+            duration,
+            id,
+            imdbId,
+            overview,
+            phase,
+            postCreditScenes,
+            releaseDate,
+            saga,
+            title,
+            trailerUrl
+        )
+    }
+
+    fun toMovieEntity(): MovieEntity {
+        return MovieEntity(
+            boxOffice,
+            chronology,
+            coverUrl,
+            directedBy,
+            duration,
+            imdbId,
+            overview,
+            phase,
+            postCreditScenes,
+            releaseDate,
+            saga,
+            title,
+            trailerUrl,
+            id
         )
     }
 }

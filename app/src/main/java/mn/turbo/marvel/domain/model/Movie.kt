@@ -1,10 +1,18 @@
 package mn.turbo.marvel.domain.model
 
 data class Movie(
-    val id: Int,
-    val title: String,
-    val coverUrl: String,
+    val boxOffice: String? = null,
+    val chronology: Int,
+    val coverUrl: String? = null,
+    val directedBy: String? = null,
     val duration: Int,
-    val directedBy: String,
-    val releaseDate: String,
+    val id: Int,
+    val imdbId: String? = null,
+    val overview: String? = null,
+    val phase: Int,
+    val postCreditScenes: Int,
+    val releaseDate: String? = null,
+    val saga: String? = null,
+    val title: String? = null,
+    val trailerUrl: String? = null
 )

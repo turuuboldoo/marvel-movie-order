@@ -1,12 +1,15 @@
 package mn.turbo.marvel.data.local
 
 import androidx.room.Database
+import androidx.room.RoomDatabase
+import mn.turbo.marvel.data.local.entiry.MovieEntity
+import mn.turbo.marvel.data.local.entiry.TvShowEntity
 
 @Database(
-    entities = [],
-    version = 1,
-    exportSchema = false
+    entities = [MovieEntity::class, TvShowEntity::class],
+    version = 1
 )
-abstract class MarvelDatabase {
-
+abstract class MarvelDatabase : RoomDatabase() {
+    abstract val movieDao: MovieDao
+    abstract val tvShowDao: TvShowDao
 }
