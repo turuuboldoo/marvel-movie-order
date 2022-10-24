@@ -1,13 +1,13 @@
 package mn.turbo.marvel.domain.usecase.movie
 
+import java.io.IOException
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import mn.turbo.marvel.common.Resource
 import mn.turbo.marvel.domain.model.Movie
 import mn.turbo.marvel.domain.repository.MovieRepository
 import retrofit2.HttpException
-import java.io.IOException
-import javax.inject.Inject
 
 class GetMovieDetailUseCase @Inject constructor(
     private val repository: MovieRepository

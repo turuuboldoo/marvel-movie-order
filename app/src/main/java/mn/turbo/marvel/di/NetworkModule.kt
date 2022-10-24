@@ -35,7 +35,7 @@ object NetworkModule {
     fun provideMovieRepository(
         api: MarvelApi,
         dao: MovieDao,
-        @DispatcherModule.IoDispatcher ioDispatcher: CoroutineDispatcher
+        @IoDispatcher ioDispatcher: CoroutineDispatcher
     ): MovieRepository {
         return MovieRepositoryImpl(api, dao, ioDispatcher)
     }
@@ -45,7 +45,7 @@ object NetworkModule {
     fun provideTvShowRepository(
         api: MarvelApi,
         tvShowDao: TvShowDao,
-        @DispatcherModule.IoDispatcher ioDispatcher: CoroutineDispatcher
+        @IoDispatcher ioDispatcher: CoroutineDispatcher
     ): TvShowRepository {
         return TvShowRepositoryImpl(api, tvShowDao, ioDispatcher)
     }
