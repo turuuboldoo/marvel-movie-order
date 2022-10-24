@@ -42,13 +42,13 @@ class MainActivity : AppCompatActivity() {
             when (menuItem.itemId) {
                 R.id.menuHome -> {
                     navController.navigate(
-                        TvShowListFragmentDirections.actionListenFragmentToHomeFragment()
+                        TvShowListFragmentDirections.actionTvShowFragmentToMovieFragment()
                     )
                     true
                 }
                 R.id.menuListen -> {
                     navController.navigate(
-                        MovieListFragmentDirections.actionHomeFragmentToListenFragment()
+                        MovieListFragmentDirections.actionMovieFragmentToTvShowFragment()
                     )
                     true
                 }

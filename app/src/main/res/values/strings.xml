@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">marvel</string>
+    <string name="app_name">MCU</string>
     <string name="fragment_movie">Movies Fragment</string>
     <string name="fragment_tv_show">TV Shows Fragment</string>
+
+    <string name="movie">Movie</string>
+    <string name="tv_show">TV Show</string>
 </resources>

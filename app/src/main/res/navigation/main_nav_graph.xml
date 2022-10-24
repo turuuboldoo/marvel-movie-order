@@ -3,29 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav_graph.xml"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/movieFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/movieFragment"
         android:name="mn.turbo.marvel.presenter.movie.MovieListFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_movie_list">
 
         <action
-            android:id="@+id/action_homeFragment_to_listenFragment"
-            app:destination="@id/listenFragment" />
+            android:id="@+id/action_movieFragment_to_tvShowFragment"
+            app:destination="@id/tvShowFragment" />
 
     </fragment>
 
     <fragment
-        android:id="@+id/listenFragment"
+        android:id="@+id/tvShowFragment"
         android:name="mn.turbo.marvel.presenter.tv_show.TvShowListFragment"
         android:label="fragment_listen"
         tools:layout="@layout/fragment_tv_show">
 
         <action
-            android:id="@+id/action_listenFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_tvShowFragment_to_movieFragment"
+            app:destination="@id/movieFragment" />
+
+        <action
+            android:id="@+id/action_tvShowFragment_to_tvShowDetailFragment"
+            app:destination="@id/tvShowDetailFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/tvShowDetailFragment"
+        android:name="mn.turbo.marvel.presenter.tv_show.TvShowDetailFragment"
+        android:label="TvShowDetailFragment">
+
+        <argument
+            android:name="tvShowId"
+            android:defaultValue="0"
+            app:argType="integer" />
 
     </fragment>
 
