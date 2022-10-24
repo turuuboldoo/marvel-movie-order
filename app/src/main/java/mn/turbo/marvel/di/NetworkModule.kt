@@ -5,7 +5,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import kotlinx.coroutines.CoroutineDispatcher
 import mn.turbo.marvel.common.Constant
+import mn.turbo.marvel.data.local.dao.MovieDao
 import mn.turbo.marvel.data.remote.MarvelApi
 import mn.turbo.marvel.data.repository.MovieRepositoryImpl
 import mn.turbo.marvel.data.repository.TvShowRepositoryImpl
@@ -30,9 +32,11 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideMovieRepository(
-        api: MarvelApi
+        api: MarvelApi,
+        dao: MovieDao,
+        @DispatcherModule.IoDispatcher ioDispatcher: CoroutineDispatcher
     ): MovieRepository {
-        return MovieRepositoryImpl(api)
+        return MovieRepositoryImpl(api, dao, ioDispatcher)
     }
 
     @Provides

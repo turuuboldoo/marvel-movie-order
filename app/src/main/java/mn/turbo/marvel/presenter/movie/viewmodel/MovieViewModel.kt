@@ -1,9 +1,9 @@
 package mn.turbo.marvel.presenter.movie.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -15,7 +15,6 @@ import mn.turbo.marvel.presenter.movie.state.MovieListState
 @HiltViewModel
 class MovieViewModel @Inject constructor(
     private val getMoviesUseCase: GetMoviesUseCase,
-    private val coroutineScope: CoroutineScope
 ) : ViewModel() {
 
     private val _movieListState = MutableStateFlow(MovieListState())
@@ -42,6 +41,6 @@ class MovieViewModel @Inject constructor(
                     )
                 }
             }
-        }.launchIn(coroutineScope)
+        }.launchIn(viewModelScope)
     }
 }
