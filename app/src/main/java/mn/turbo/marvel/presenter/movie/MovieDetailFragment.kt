@@ -1,29 +1,34 @@
 package mn.turbo.marvel.presenter.movie
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import dagger.hilt.android.AndroidEntryPoint
+import mn.turbo.marvel.R
 import mn.turbo.marvel.common.collectLatestLifecycleFlow
-import mn.turbo.marvel.databinding.FragmentMovieListBinding
-import mn.turbo.marvel.presenter.movie.viewmodel.MovieViewModel
+import mn.turbo.marvel.databinding.FragmentMovieDetailBinding
+import mn.turbo.marvel.presenter.movie.viewmodel.MovieDetailViewModel
 
-@AndroidEntryPoint
-class MovieListFragment : Fragment() {
+class MovieDetailFragment : Fragment() {
 
-    private var _binding: FragmentMovieListBinding? = null
+    private var _binding: FragmentMovieDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: MovieViewModel by viewModels()
+    private val viewModel: MovieDetailViewModel by viewModels()
+
+    private var movieId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.getMovies()
+        arguments?.let {
+            movieId = MovieDetailFragmentArgs.fromBundle(it)
+                .movieId
+        }
+
+        viewModel.getMovieDetail(movieId)
     }
 
     override fun onCreateView(
@@ -31,23 +36,18 @@ class MovieListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMovieListBinding.inflate(inflater, container, false)
+        _binding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_movie_detail, container, false
+        )
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         collectLatestLifecycleFlow(viewModel.movieListState) { state ->
-            state.movies.forEach {
-                Log.w("123123", "MovieListFragment ${it.title}")
-            }
+            binding.movie = state.movie
         }
-
-        // navigate by id to detail fragment
-//        findNavController().navigate(
-//            MovieListFragmentDirections
-//                .actionMovieFragmentToMovieDetailFragment(1)
-//        )
     }
 
     override fun onDestroyView() {

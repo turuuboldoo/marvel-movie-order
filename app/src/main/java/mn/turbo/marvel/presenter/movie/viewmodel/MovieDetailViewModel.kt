@@ -1,42 +1,42 @@
 package mn.turbo.marvel.presenter.movie.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import mn.turbo.marvel.common.Resource
-import mn.turbo.marvel.domain.usecase.movie.GetMoviesUseCase
-import mn.turbo.marvel.presenter.movie.state.MovieListState
+import mn.turbo.marvel.domain.usecase.movie.GetMovieDetailUseCase
+import mn.turbo.marvel.presenter.movie.state.MovieDetailState
+import javax.inject.Inject
 
 @HiltViewModel
-class MovieViewModel @Inject constructor(
-    private val getMoviesUseCase: GetMoviesUseCase,
+class MovieDetailViewModel @Inject constructor(
+    private val useCase: GetMovieDetailUseCase
 ) : ViewModel() {
 
-    private val _movieListState = MutableStateFlow(MovieListState())
+    private val _movieListState = MutableStateFlow(MovieDetailState())
     val movieListState = _movieListState.asStateFlow()
 
-    fun getMovies() {
-        getMoviesUseCase().onEach { result ->
+    fun getMovieDetail(movieId: Int) {
+        useCase(movieId).onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _movieListState.value = MovieListState(
-                        movies = result.data ?: emptyList()
+                    _movieListState.value = MovieDetailState(
+                        movie = result.data
                     )
                 }
                 is Resource.Loading -> {
-                    _movieListState.value = MovieListState(isLoading = true)
+                    _movieListState.value = MovieDetailState(
+                        isLoading = true
+                    )
                 }
                 is Resource.Error -> {
-                    _movieListState.value = MovieListState(
+                    _movieListState.value = MovieDetailState(
                         error = result.message ?: "some error in ${this.javaClass.name}"
                     )
                 }
             }
-        }.launchIn(viewModelScope)
+        }
     }
 }

@@ -7,3 +7,9 @@ data class MovieListState(
     val movies: List<Movie> = emptyList(),
     val error: String = ""
 )
+
+data class MovieDetailState(
+    val isLoading: Boolean = false,
+    val movie: Movie? = null,
+    val error: String = ""
+)

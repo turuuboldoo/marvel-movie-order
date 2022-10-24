@@ -26,7 +26,8 @@ class MovieRepositoryImpl @Inject constructor(
         return movieDao.selectAll().map { it.toMovie() }
     }
 
-    override suspend fun getMovieById(movieId: Int): Movie {
-        return movieDao.selectById(movieId).toMovie()
-    }
+    override suspend fun getMovieById(movieId: Int): Movie =
+        withContext(ioDispatcher) {
+            movieDao.selectById(movieId).toMovie()
+        }
 }
