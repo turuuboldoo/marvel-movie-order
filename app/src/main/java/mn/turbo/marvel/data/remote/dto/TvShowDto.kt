@@ -1,6 +1,7 @@
 package mn.turbo.marvel.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
+import mn.turbo.marvel.data.local.entiry.TvShowEntity
 import mn.turbo.marvel.domain.model.TvShow
 
 data class TvShowDto(
@@ -48,6 +49,22 @@ data class TvShowDto(
             trailerUrl
         )
     }
+
+    fun toTvShowEntity() = TvShowEntity(
+        coverUrl,
+        directedBy,
+        imdbId,
+        lastAiredDate,
+        numberEpisodes,
+        overview,
+        phase,
+        releaseDate,
+        saga,
+        season,
+        title,
+        trailerUrl,
+        id
+    )
 }
 
 data class TvShowList(

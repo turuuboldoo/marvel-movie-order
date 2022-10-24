@@ -9,8 +9,8 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 import mn.turbo.marvel.common.Constant
 import mn.turbo.marvel.data.local.MarvelDatabase
-import mn.turbo.marvel.data.local.MovieDao
-import mn.turbo.marvel.data.local.TvShowDao
+import mn.turbo.marvel.data.local.dao.MovieDao
+import mn.turbo.marvel.data.local.dao.TvShowDao
 
 @Module
 @InstallIn(SingletonComponent::class)

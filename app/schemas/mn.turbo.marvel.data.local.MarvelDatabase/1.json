@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "41b1afd235149b3658e7cacba844c49c",
+    "identityHash": "03fd812b55b3b46bc05d154331d3fdf7",
     "entities": [
       {
         "tableName": "movies",
@@ -104,85 +104,85 @@
       },
       {
         "tableName": "tvshows",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`coverUrl` TEXT NOT NULL, `directedBy` TEXT NOT NULL, `imdbId` TEXT NOT NULL, `lastAiredDate` TEXT NOT NULL, `numberEpisodes` INTEGER NOT NULL, `overview` TEXT NOT NULL, `phase` INTEGER NOT NULL, `releaseDate` TEXT NOT NULL, `saga` TEXT NOT NULL, `season` INTEGER NOT NULL, `title` TEXT NOT NULL, `trailerUrl` TEXT NOT NULL, `id` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`coverUrl` TEXT, `directedBy` TEXT, `imdbId` TEXT, `lastAiredDate` TEXT, `numberEpisodes` INTEGER, `overview` TEXT, `phase` INTEGER, `releaseDate` TEXT, `saga` TEXT, `season` INTEGER, `title` TEXT, `trailerUrl` TEXT, `id` INTEGER, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "coverUrl",
             "columnName": "coverUrl",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "directedBy",
             "columnName": "directedBy",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "imdbId",
             "columnName": "imdbId",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "lastAiredDate",
             "columnName": "lastAiredDate",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "numberEpisodes",
             "columnName": "numberEpisodes",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "overview",
             "columnName": "overview",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "phase",
             "columnName": "phase",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "releaseDate",
             "columnName": "releaseDate",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "saga",
             "columnName": "saga",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "season",
             "columnName": "season",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "title",
             "columnName": "title",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "trailerUrl",
             "columnName": "trailerUrl",
             "affinity": "TEXT",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -198,7 +198,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '41b1afd235149b3658e7cacba844c49c')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '03fd812b55b3b46bc05d154331d3fdf7')"
     ]
   }
 }

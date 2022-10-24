@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import mn.turbo.marvel.common.Resource
-import mn.turbo.marvel.data.local.MovieDao
+import mn.turbo.marvel.data.local.dao.MovieDao
 import mn.turbo.marvel.di.DispatcherModule
 import mn.turbo.marvel.domain.model.Movie
 import mn.turbo.marvel.domain.repository.MovieRepository
