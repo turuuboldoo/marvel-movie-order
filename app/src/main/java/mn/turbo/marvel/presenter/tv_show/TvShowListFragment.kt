@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.common.collectLatestLifecycleFlow
 import mn.turbo.marvel.databinding.FragmentTvShowBinding
+import mn.turbo.marvel.presenter.tv_show.adapter.TvShowsAdapter
 import mn.turbo.marvel.presenter.tv_show.viewmodel.TvShowViewModel
 
 @AndroidEntryPoint
@@ -20,6 +21,10 @@ class TvShowListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: TvShowViewModel by viewModels()
+
+    private var adapter = TvShowsAdapter { tvShow ->
+        navigateToDetail(tvShow.id)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,21 +37,25 @@ class TvShowListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.recyclerView.adapter = adapter
+
         collectLatestLifecycleFlow(viewModel.tvShowListState) { state ->
             state.tvShows.forEach {
                 Log.w("123123", "TvShowFragment ${it.title}")
             }
+            adapter.submitList(state.tvShows)
         }
-
-        // navigate by id to detail fragment
-//        findNavController().navigate(
-//            TvShowListFragmentDirections
-//                .actionTvShowFragmentToTvShowDetailFragment(1)
-//        )
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun navigateToDetail(movieId: Int) {
+        findNavController().navigate(
+            TvShowListFragmentDirections
+                .actionTvShowFragmentToTvShowDetailFragment(movieId)
+        )
     }
 }
