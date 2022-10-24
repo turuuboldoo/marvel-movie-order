@@ -20,4 +20,7 @@ interface MovieDao {
 
     @Query("select * from movies where id = :movieId")
     suspend fun selectById(movieId: Int): MovieEntity
+
+    @Query("SELECT * FROM movies ORDER BY id ASC LIMIT :limit OFFSET :offset")
+    suspend fun getPagedList(limit: Int, offset: Int): List<MovieEntity>
 }
