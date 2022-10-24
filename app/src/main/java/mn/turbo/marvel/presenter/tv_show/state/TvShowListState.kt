@@ -7,3 +7,9 @@ data class TvShowListState(
     val tvShows: List<TvShow> = emptyList(),
     val error: String = ""
 )
+
+data class TvShowDetailState(
+    val isLoading: Boolean = false,
+    val tvShow: TvShow? = null,
+    val error: String = ""
+)

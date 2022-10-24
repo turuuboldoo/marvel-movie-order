@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "03fd812b55b3b46bc05d154331d3fdf7",
+    "identityHash": "ecb88b57081bb32e29715498f2ba22b5",
     "entities": [
       {
         "tableName": "movies",
@@ -103,7 +103,7 @@
         "foreignKeys": []
       },
       {
-        "tableName": "tvshows",
+        "tableName": "tv_shows",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`coverUrl` TEXT, `directedBy` TEXT, `imdbId` TEXT, `lastAiredDate` TEXT, `numberEpisodes` INTEGER, `overview` TEXT, `phase` INTEGER, `releaseDate` TEXT, `saga` TEXT, `season` INTEGER, `title` TEXT, `trailerUrl` TEXT, `id` INTEGER, PRIMARY KEY(`id`))",
         "fields": [
           {
@@ -198,7 +198,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '03fd812b55b3b46bc05d154331d3fdf7')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ecb88b57081bb32e29715498f2ba22b5')"
     ]
   }
 }

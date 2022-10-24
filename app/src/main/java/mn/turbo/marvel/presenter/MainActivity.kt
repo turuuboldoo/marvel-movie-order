@@ -10,7 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.R
 import mn.turbo.marvel.databinding.ActivityMainBinding
 import mn.turbo.marvel.presenter.movie.MovieListFragmentDirections
-import mn.turbo.marvel.presenter.tv_show.TvShowFragmentDirections
+import mn.turbo.marvel.presenter.tv_show.TvShowListFragmentDirections
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -24,18 +24,25 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setupNavHost()
+        bottomNavClickListener()
+    }
+
+    private fun setupNavHost() {
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentContainerView) as NavHostFragment
 
         navController = navHostFragment.findNavController()
 
         setupWithNavController(binding.bottomNavigationView, navController)
+    }
 
+    private fun bottomNavClickListener() {
         binding.bottomNavigationView.setOnItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.menuHome -> {
                     navController.navigate(
-                        TvShowFragmentDirections.actionListenFragmentToHomeFragment()
+                        TvShowListFragmentDirections.actionListenFragmentToHomeFragment()
                     )
                     true
                 }

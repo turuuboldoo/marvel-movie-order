@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">marvel</string>
     <string name="fragment_movie">Movies Fragment</string>
-    <string name="fragment_tv_show">Tv Shows Fragment</string>
+    <string name="fragment_tv_show">TV Shows Fragment</string>
 </resources>

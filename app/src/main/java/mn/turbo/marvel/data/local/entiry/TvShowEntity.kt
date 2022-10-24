@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import mn.turbo.marvel.domain.model.TvShow
 
-@Entity(tableName = "tvshows")
+@Entity(tableName = "tv_shows")
 data class TvShowEntity(
     @SerializedName("cover_url")
     val coverUrl: String? = null,

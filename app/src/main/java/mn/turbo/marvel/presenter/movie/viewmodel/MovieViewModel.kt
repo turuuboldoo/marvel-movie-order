@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import mn.turbo.marvel.common.Resource
-import mn.turbo.marvel.domain.use_case.movie.GetMoviesUseCase
+import mn.turbo.marvel.domain.usecase.movie.GetMoviesUseCase
 import mn.turbo.marvel.presenter.movie.state.MovieListState
 
 @HiltViewModel

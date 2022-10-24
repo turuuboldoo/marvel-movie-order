@@ -8,6 +8,7 @@ import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
 import mn.turbo.marvel.common.Constant
 import mn.turbo.marvel.data.local.dao.MovieDao
+import mn.turbo.marvel.data.local.dao.TvShowDao
 import mn.turbo.marvel.data.remote.MarvelApi
 import mn.turbo.marvel.data.repository.MovieRepositoryImpl
 import mn.turbo.marvel.data.repository.TvShowRepositoryImpl
@@ -42,8 +43,10 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideTvShowRepository(
-        api: MarvelApi
+        api: MarvelApi,
+        tvShowDao: TvShowDao,
+        @DispatcherModule.IoDispatcher ioDispatcher: CoroutineDispatcher
     ): TvShowRepository {
-        return TvShowRepositoryImpl(api)
+        return TvShowRepositoryImpl(api, tvShowDao, ioDispatcher)
     }
 }

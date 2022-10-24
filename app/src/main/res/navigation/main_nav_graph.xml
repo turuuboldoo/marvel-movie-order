@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/listenFragment"
-        android:name="mn.turbo.marvel.presenter.tv_show.TvShowFragment"
+        android:name="mn.turbo.marvel.presenter.tv_show.TvShowListFragment"
         android:label="fragment_listen"
         tools:layout="@layout/fragment_tv_show">
 

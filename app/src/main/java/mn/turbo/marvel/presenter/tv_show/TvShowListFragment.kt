@@ -13,7 +13,7 @@ import mn.turbo.marvel.databinding.FragmentTvShowBinding
 import mn.turbo.marvel.presenter.tv_show.viewmodel.TvShowViewModel
 
 @AndroidEntryPoint
-class TvShowFragment : Fragment() {
+class TvShowListFragment : Fragment() {
 
     private var _binding: FragmentTvShowBinding? = null
     private val binding get() = _binding!!

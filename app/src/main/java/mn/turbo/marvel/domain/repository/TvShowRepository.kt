@@ -1,8 +1,8 @@
 package mn.turbo.marvel.domain.repository
 
-import mn.turbo.marvel.data.remote.dto.TvShowDto
+import mn.turbo.marvel.domain.model.TvShow
 
 interface TvShowRepository {
-    suspend fun getTvShows(): List<TvShowDto>
-    suspend fun getTvShowsById(tvShowId: Int): TvShowDto
+    suspend fun getTvShows(): List<TvShow>
+    suspend fun getTvShowsById(tvShowId: Int): TvShow
 }
