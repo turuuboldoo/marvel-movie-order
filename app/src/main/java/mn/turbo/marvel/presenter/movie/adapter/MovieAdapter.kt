@@ -6,8 +6,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import mn.turbo.marvel.R
+import mn.turbo.marvel.common.setImageUrl
 import mn.turbo.marvel.databinding.ItemMovieBinding
 import mn.turbo.marvel.domain.model.Movie
 
@@ -31,9 +31,7 @@ class MovieAdapter(
             holder.binding.apply {
                 this.movie = movie
 
-                Glide.with(holder.itemView.context)
-                    .load(movie.coverUrl)
-                    .into(posterImageView)
+                posterImageView.setImageUrl(movie.coverUrl)
 
                 root.setOnClickListener {
                     onClick.invoke(movie)
