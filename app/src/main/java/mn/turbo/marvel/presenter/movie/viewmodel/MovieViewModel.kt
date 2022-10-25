@@ -21,7 +21,11 @@ class MovieViewModel @Inject constructor(
     private val _movieListState = MutableStateFlow(UiState<List<Movie>>())
     val movieListState = _movieListState.asStateFlow()
 
-    fun getMovies() {
+    init {
+        getMovies()
+    }
+
+    private fun getMovies() {
         getMoviesUseCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {

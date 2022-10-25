@@ -19,18 +19,6 @@ class MovieDetailFragment : Fragment() {
 
     private val viewModel: MovieDetailViewModel by viewModels()
 
-    private var movieId: Int = 0
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            movieId = MovieDetailFragmentArgs.fromBundle(it)
-                .movieId
-        }
-
-        viewModel.getMovieDetail(movieId)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
