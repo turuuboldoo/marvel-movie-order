@@ -28,9 +28,11 @@ class MovieDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_movie_detail, container, false
+            inflater,
+            R.layout.fragment_movie_detail,
+            container,
+            false
         )
-
         return binding.root
     }
 

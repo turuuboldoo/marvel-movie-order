@@ -1,7 +1,6 @@
 package mn.turbo.marvel.presenter.movie
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +25,13 @@ class MovieListFragment : Fragment() {
 
     private val viewModel: MovieViewModel by viewModels()
 
+    private val movieAdapter = MovieAdapter { movie ->
+        findNavController().navigate(
+            MovieListFragmentDirections
+                .actionMovieFragmentToMovieDetailFragment(movie.id)
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,13 +43,20 @@ class MovieListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val movieAdapter = MovieAdapter { movie ->
-            findNavController().navigate(
-                MovieListFragmentDirections
-                    .actionMovieFragmentToMovieDetailFragment(movie.id)
-            )
-        }
+        setupViewPager()
 
+        collectLatestLifecycleFlow(viewModel.movieListState) { state ->
+            binding.progressBar.isVisible = state.isLoading
+            movieAdapter.submitList(state.data)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun setupViewPager() {
         val pageMarginPx = resources.getDimensionPixelOffset(R.dimen.pageMargin)
         val offsetPx = resources.getDimensionPixelOffset(R.dimen.offset)
 
@@ -61,18 +74,5 @@ class MovieListFragment : Fragment() {
                 }
             }
         }
-
-        collectLatestLifecycleFlow(viewModel.movieListState) { state ->
-            binding.progressBar.isVisible = state.isLoading
-            movieAdapter.submitList(state.data)
-            state.data?.forEach {
-                Log.w("123123", "MovieListFragment ${it.title}")
-            }
-        }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
