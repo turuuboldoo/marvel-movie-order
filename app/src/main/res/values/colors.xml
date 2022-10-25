@@ -10,4 +10,11 @@
 
     <color name="color_background">#0F1011</color>
     <color name="placeholder_color">#90A6B5</color>
+
+    <!--color palette-->
+    <color name="palette_1">#49B73B</color>
+    <color name="palette_2">#827464</color>
+    <color name="palette_3">#DCD0C3</color>
+    <color name="palette_4">#FAFAF8</color>
+    <color name="palette_5">#141414</color>
 </resources>
