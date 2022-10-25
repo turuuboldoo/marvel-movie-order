@@ -20,8 +20,6 @@ class TvShowDetailFragment : Fragment() {
 
     private val viewModel: TvShowDetailViewModel by viewModels()
 
-    private var tvShowId: Int = 0
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,12 +27,6 @@ class TvShowDetailFragment : Fragment() {
     ): View {
         _binding = FragmentTvShowDetailBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        tvShowId = arguments?.getInt("tvShowId") ?: 0
-        viewModel.getTvShowDetail(tvShowId)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
