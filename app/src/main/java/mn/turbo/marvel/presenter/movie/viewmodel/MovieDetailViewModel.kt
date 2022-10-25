@@ -3,6 +3,7 @@ package mn.turbo.marvel.presenter.movie.viewmodel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.onEach
@@ -11,7 +12,6 @@ import mn.turbo.marvel.common.Resource
 import mn.turbo.marvel.common.UiState
 import mn.turbo.marvel.domain.model.Movie
 import mn.turbo.marvel.domain.usecase.movie.GetMovieDetailUseCase
-import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(

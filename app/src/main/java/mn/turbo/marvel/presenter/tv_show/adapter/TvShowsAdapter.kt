@@ -42,8 +42,8 @@ class TvShowsAdapter(
 
 class TvShowDiffUtil : DiffUtil.ItemCallback<TvShow>() {
     override fun areItemsTheSame(oldItem: TvShow, newItem: TvShow) =
-        newItem == oldItem
+        newItem.id == oldItem.id
 
     override fun areContentsTheSame(oldItem: TvShow, newItem: TvShow) =
-        oldItem.id == newItem.id
+        oldItem == newItem
 }
