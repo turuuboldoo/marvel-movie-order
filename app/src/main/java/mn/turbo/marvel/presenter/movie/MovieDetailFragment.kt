@@ -46,7 +46,7 @@ class MovieDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         collectLatestLifecycleFlow(viewModel.movieListState) { state ->
-            binding.movie = state.movie
+            binding.movie = state.data
         }
     }
 

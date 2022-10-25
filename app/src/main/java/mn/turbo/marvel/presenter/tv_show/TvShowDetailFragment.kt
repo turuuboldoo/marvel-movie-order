@@ -40,7 +40,7 @@ class TvShowDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         collectLatestLifecycleFlow(viewModel.tvShowState) { state ->
-            Log.w("123123", "TvShowDetailFragment - ${state.tvShow?.title}")
+            Log.w("123123", "TvShowDetailFragment - ${state.data?.title}")
         }
     }
 

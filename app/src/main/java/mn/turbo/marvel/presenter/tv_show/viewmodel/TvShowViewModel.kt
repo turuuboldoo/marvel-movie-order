@@ -9,15 +9,16 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import mn.turbo.marvel.common.Resource
+import mn.turbo.marvel.common.UiState
+import mn.turbo.marvel.domain.model.TvShow
 import mn.turbo.marvel.domain.usecase.tvshow.GetTvShowListUseCase
-import mn.turbo.marvel.presenter.tv_show.state.TvShowListState
 
 @HiltViewModel
 class TvShowViewModel @Inject constructor(
     private val useCase: GetTvShowListUseCase
 ) : ViewModel() {
 
-    private val _tvShowListState = MutableStateFlow(TvShowListState())
+    private val _tvShowListState = MutableStateFlow(UiState<List<TvShow>>())
     val tvShowListState = _tvShowListState.asStateFlow()
 
     init {
@@ -28,17 +29,17 @@ class TvShowViewModel @Inject constructor(
         useCase().onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _tvShowListState.value = TvShowListState(
-                        tvShows = result.data ?: emptyList()
+                    _tvShowListState.value = UiState(
+                        data = result.data ?: emptyList()
                     )
                 }
                 is Resource.Loading -> {
-                    _tvShowListState.value = TvShowListState(
+                    _tvShowListState.value = UiState(
                         isLoading = true
                     )
                 }
                 is Resource.Error -> {
-                    _tvShowListState.value = TvShowListState(
+                    _tvShowListState.value = UiState(
                         error = result.message ?: "some error in ${this.javaClass.name}"
                     )
                 }

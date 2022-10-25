@@ -9,32 +9,33 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import mn.turbo.marvel.common.Resource
+import mn.turbo.marvel.common.UiState
+import mn.turbo.marvel.domain.model.TvShow
 import mn.turbo.marvel.domain.usecase.tvshow.GetTvShowDetailUseCase
-import mn.turbo.marvel.presenter.tv_show.state.TvShowDetailState
 
 @HiltViewModel
 class TvShowDetailViewModel @Inject constructor(
     private val useCase: GetTvShowDetailUseCase
 ) : ViewModel() {
 
-    private val _tvShowState = MutableStateFlow(TvShowDetailState())
+    private val _tvShowState = MutableStateFlow(UiState<TvShow>())
     val tvShowState = _tvShowState.asStateFlow()
 
     fun getTvShowDetail(tvShowId: Int) {
         useCase(tvShowId).onEach { result ->
             when (result) {
                 is Resource.Success -> {
-                    _tvShowState.value = TvShowDetailState(
-                        tvShow = result.data
+                    _tvShowState.value = UiState(
+                        data = result.data
                     )
                 }
                 is Resource.Loading -> {
-                    _tvShowState.value = TvShowDetailState(
+                    _tvShowState.value = UiState(
                         isLoading = true
                     )
                 }
                 is Resource.Error -> {
-                    _tvShowState.value = TvShowDetailState(
+                    _tvShowState.value = UiState(
                         error = result.message ?: "some error in ${this.javaClass.name}"
                     )
                 }

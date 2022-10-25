@@ -40,10 +40,10 @@ class TvShowListFragment : Fragment() {
         binding.recyclerView.adapter = adapter
 
         collectLatestLifecycleFlow(viewModel.tvShowListState) { state ->
-            state.tvShows.forEach {
+            state.data?.forEach {
                 Log.w("123123", "TvShowFragment ${it.title}")
             }
-            adapter.submitList(state.tvShows)
+            adapter.submitList(state.data)
         }
     }
 

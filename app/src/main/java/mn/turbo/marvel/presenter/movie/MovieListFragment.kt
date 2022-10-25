@@ -37,7 +37,7 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         collectLatestLifecycleFlow(viewModel.movieListState) { state ->
-            state.movies.forEach {
+            state.data?.forEach {
                 Log.w("123123", "MovieListFragment ${it.title}")
             }
         }
