@@ -4,18 +4,14 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
-import kotlinx.coroutines.CoroutineDispatcher
 import mn.turbo.marvel.common.Constant
-import mn.turbo.marvel.data.local.dao.MovieDao
-import mn.turbo.marvel.data.local.dao.TvShowDao
 import mn.turbo.marvel.data.remote.MarvelApi
-import mn.turbo.marvel.data.repository.MovieRepositoryImpl
-import mn.turbo.marvel.data.repository.TvShowRepositoryImpl
-import mn.turbo.marvel.domain.repository.MovieRepository
-import mn.turbo.marvel.domain.repository.TvShowRepository
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -23,30 +19,33 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideMarvelApi(): MarvelApi = Retrofit
-        .Builder()
-        .baseUrl(Constant.BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(MarvelApi::class.java)
-
-    @Provides
-    @Singleton
-    fun provideMovieRepository(
-        api: MarvelApi,
-        dao: MovieDao,
-        @IoDispatcher ioDispatcher: CoroutineDispatcher
-    ): MovieRepository {
-        return MovieRepositoryImpl(api, dao, ioDispatcher)
+    fun provideMarvelApi(
+        okHttpClient: OkHttpClient
+    ): MarvelApi {
+        return Retrofit
+            .Builder()
+            .baseUrl(Constant.BASE_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(MarvelApi::class.java)
     }
 
     @Provides
     @Singleton
-    fun provideTvShowRepository(
-        api: MarvelApi,
-        tvShowDao: TvShowDao,
-        @IoDispatcher ioDispatcher: CoroutineDispatcher
-    ): TvShowRepository {
-        return TvShowRepositoryImpl(api, tvShowDao, ioDispatcher)
+    fun provideOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .apply {
+                connectTimeout(30, TimeUnit.SECONDS)
+                writeTimeout(30, TimeUnit.SECONDS)
+                readTimeout(30, TimeUnit.SECONDS)
+                addInterceptor(
+                    HttpLoggingInterceptor()
+                        .apply {
+                            level = HttpLoggingInterceptor.Level.BODY
+                        }
+                )
+            }
+            .build()
     }
 }
