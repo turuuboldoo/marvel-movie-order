@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="pageMargin">20dp</dimen>
     <dimen name="offset">30dp</dimen>
+    <dimen name="pageMargin">20dp</dimen>
     <dimen name="pageMarginAndOffset">50dp</dimen>
+
+    <dimen name="dp16">16dp</dimen>
+    <dimen name="dp20">20dp</dimen>
+
+    <dimen name="sp16">16sp</dimen>
+    <dimen name="sp22">22sp</dimen>
 </resources>

@@ -1,21 +1,23 @@
 package mn.turbo.marvel.presenter.movie
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.roundToInt
 import mn.turbo.marvel.R
 import mn.turbo.marvel.common.collectLatestLifecycleFlow
+import mn.turbo.marvel.common.cropTop
 import mn.turbo.marvel.databinding.FragmentMovieDetailBinding
 import mn.turbo.marvel.presenter.movie.viewmodel.MovieDetailViewModel
 
 @AndroidEntryPoint
-class MovieDetailFragment : Fragment() {
+class MovieDetailFragment : Fragment(), OnClickListener {
 
     private var _binding: FragmentMovieDetailBinding? = null
     private val binding get() = _binding!!
@@ -38,14 +40,44 @@ class MovieDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val deviceWidth = requireContext().resources.displayMetrics.widthPixels
+
+        setClickListener()
+
         collectLatestLifecycleFlow(viewModel.movieListState) { state ->
             binding.movie = state.data
-            Log.w("123123", "${this.javaClass.name} - ${state.data?.title}")
+
+            binding.coverImageView.cropTop(
+                url = state.data?.coverUrl,
+                width = deviceWidth,
+                height = (deviceWidth / 1.5).roundToInt()
+            )
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onClick(p0: View?) {
+        binding.run {
+            when (p0) {
+                descTextView -> {
+                    if (descTextView.maxLines == 3) {
+                        descTextView.maxLines = 100
+                    } else {
+                        descTextView.maxLines = 3
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setClickListener() {
+        binding.let { layout ->
+            layout.descTextView.setOnClickListener(this)
+            layout.titleTextView.setOnClickListener(this)
+        }
     }
 }
