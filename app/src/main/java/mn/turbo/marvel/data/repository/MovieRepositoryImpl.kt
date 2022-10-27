@@ -16,10 +16,10 @@ class MovieRepositoryImpl @Inject constructor(
 ) : MovieRepository {
 
     override suspend fun getMovies(): List<Movie> {
-        val movies = api.getMovies().data
-            .map { it.toMovieEntity() }
-
         withContext(ioDispatcher) {
+            val movies = api.getMovies().data
+                .map { it.toMovieEntity() }
+
             movieDao.insert(movies)
         }
 

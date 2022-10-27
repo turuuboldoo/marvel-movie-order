@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
 import mn.turbo.marvel.data.local.dao.MovieDao
 import mn.turbo.marvel.data.local.dao.TvShowDao
@@ -12,7 +13,6 @@ import mn.turbo.marvel.data.repository.MovieRepositoryImpl
 import mn.turbo.marvel.data.repository.TvShowRepositoryImpl
 import mn.turbo.marvel.domain.repository.MovieRepository
 import mn.turbo.marvel.domain.repository.TvShowRepository
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
