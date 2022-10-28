@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/tvShowFragment"
-        android:name="mn.turbo.marvel.presenter.tv_show.TvShowListFragment"
+        android:name="mn.turbo.marvel.presenter.tvshow.TvShowListFragment"
         android:label="fragment_listen"
         tools:layout="@layout/fragment_tv_show">
 
@@ -39,7 +39,7 @@
 
     <fragment
         android:id="@+id/tvShowDetailFragment"
-        android:name="mn.turbo.marvel.presenter.tv_show.TvShowDetailFragment"
+        android:name="mn.turbo.marvel.presenter.tvshow.TvShowDetailFragment"
         android:label="TvShowDetailFragment">
 
         <argument
@@ -58,6 +58,22 @@
             android:name="movieId"
             android:defaultValue="0"
             app:argType="integer" />
+
+        <action
+            android:id="@+id/action_movieDetailFragment_to_videoPlayerFragment"
+            app:destination="@id/videoPlayerFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/videoPlayerFragment"
+        android:name="mn.turbo.marvel.presenter.video.VideoPlayerFragment"
+        android:label="VideoPlayerFragment">
+
+        <argument
+            android:name="videoUrl"
+            app:nullable="true"
+            app:argType="string" />
 
     </fragment>
 

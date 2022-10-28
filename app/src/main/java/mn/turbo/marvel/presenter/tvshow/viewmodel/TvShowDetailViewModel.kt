@@ -1,4 +1,4 @@
-package mn.turbo.marvel.presenter.tv_show.viewmodel
+package mn.turbo.marvel.presenter.tvshow.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

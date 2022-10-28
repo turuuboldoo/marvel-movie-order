@@ -1,6 +1,7 @@
 package mn.turbo.marvel.presenter.movie
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlin.math.roundToInt
 import mn.turbo.marvel.R
@@ -63,6 +65,15 @@ class MovieDetailFragment : Fragment(), OnClickListener {
     override fun onClick(p0: View?) {
         binding.run {
             when (p0) {
+                coverImageView -> {
+                    Log.w("123123", "coverImageView - ${binding.movie?.trailerUrl}")
+                    findNavController().navigate(
+                        MovieDetailFragmentDirections
+                            .actionMovieDetailFragmentToVideoPlayerFragment(
+                                videoUrl = binding.movie?.trailerUrl ?: ""
+                            )
+                    )
+                }
                 descTextView -> {
                     if (descTextView.maxLines == 3) {
                         descTextView.maxLines = 100
@@ -78,6 +89,7 @@ class MovieDetailFragment : Fragment(), OnClickListener {
         binding.let { layout ->
             layout.descTextView.setOnClickListener(this)
             layout.titleTextView.setOnClickListener(this)
+            layout.coverImageView.setOnClickListener(this)
         }
     }
 }

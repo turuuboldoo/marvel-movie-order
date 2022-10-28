@@ -10,7 +10,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.R
 import mn.turbo.marvel.databinding.ActivityMainBinding
 import mn.turbo.marvel.presenter.movie.MovieListFragmentDirections
-import mn.turbo.marvel.presenter.tv_show.TvShowListFragmentDirections
+import mn.turbo.marvel.presenter.tvshow.TvShowListFragmentDirections
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

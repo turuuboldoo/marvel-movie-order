@@ -5,4 +5,5 @@ object Constant {
     const val DATABASE_NAME = "marvel.db"
     const val PARAM_MOVIE_ID = "movieId"
     const val PARAM_TV_SHOW_ID = "tvShowId"
+    const val PARAM_VIDEO_URL = "videoUrl"
 }

@@ -1,4 +1,4 @@
-package mn.turbo.marvel.presenter.tv_show.adapter
+package mn.turbo.marvel.presenter.tvshow.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

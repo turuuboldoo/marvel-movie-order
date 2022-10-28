@@ -1,4 +1,4 @@
-package mn.turbo.marvel.presenter.tv_show
+package mn.turbo.marvel.presenter.tvshow
 
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.common.collectLatestLifecycleFlow
 import mn.turbo.marvel.databinding.FragmentTvShowDetailBinding
-import mn.turbo.marvel.presenter.tv_show.viewmodel.TvShowDetailViewModel
+import mn.turbo.marvel.presenter.tvshow.viewmodel.TvShowDetailViewModel
 
 @AndroidEntryPoint
 class TvShowDetailFragment : Fragment() {

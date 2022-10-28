@@ -1,4 +1,4 @@
-package mn.turbo.marvel.presenter.tv_show
+package mn.turbo.marvel.presenter.tvshow
 
 import android.os.Bundle
 import android.util.Log
@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.common.collectLatestLifecycleFlow
 import mn.turbo.marvel.databinding.FragmentTvShowBinding
-import mn.turbo.marvel.presenter.tv_show.adapter.TvShowsAdapter
-import mn.turbo.marvel.presenter.tv_show.viewmodel.TvShowViewModel
+import mn.turbo.marvel.presenter.tvshow.adapter.TvShowsAdapter
+import mn.turbo.marvel.presenter.tvshow.viewmodel.TvShowViewModel
 
 @AndroidEntryPoint
 class TvShowListFragment : Fragment() {
