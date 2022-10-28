@@ -1,7 +1,6 @@
 package mn.turbo.marvel.presenter.movie
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
@@ -11,12 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.roundToInt
 import mn.turbo.marvel.R
 import mn.turbo.marvel.common.collectLatestLifecycleFlow
 import mn.turbo.marvel.common.cropTop
 import mn.turbo.marvel.databinding.FragmentMovieDetailBinding
 import mn.turbo.marvel.presenter.movie.viewmodel.MovieDetailViewModel
+import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 class MovieDetailFragment : Fragment(), OnClickListener {
@@ -66,7 +65,6 @@ class MovieDetailFragment : Fragment(), OnClickListener {
         binding.run {
             when (p0) {
                 coverImageView -> {
-                    Log.w("123123", "coverImageView - ${binding.movie?.trailerUrl}")
                     findNavController().navigate(
                         MovieDetailFragmentDirections
                             .actionMovieDetailFragmentToVideoPlayerFragment(

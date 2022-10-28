@@ -1,7 +1,6 @@
 package mn.turbo.marvel.presenter.tvshow
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,9 +39,6 @@ class TvShowListFragment : Fragment() {
         binding.recyclerView.adapter = adapter
 
         collectLatestLifecycleFlow(viewModel.tvShowListState) { state ->
-            state.data?.forEach {
-                Log.w("123123", "TvShowFragment ${it.title}")
-            }
             adapter.submitList(state.data)
         }
     }
