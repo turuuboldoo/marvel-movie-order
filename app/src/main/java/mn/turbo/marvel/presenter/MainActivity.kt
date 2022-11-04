@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
                             MovieListScreen(navController)
                         }
                         composable(
-                            route = Screen.MovieDetailScreen.route + "/movieId"
+                            route = Screen.MovieDetailScreen.route + "/{movieId}"
                         ) {
                             MovieDetailScreen(navController)
                         }

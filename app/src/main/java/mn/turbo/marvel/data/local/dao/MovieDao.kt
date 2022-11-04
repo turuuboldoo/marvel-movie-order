@@ -16,7 +16,7 @@ interface MovieDao {
     suspend fun insert(movieEntity: List<MovieEntity>)
 
     @Query("select * from movies")
-    suspend fun selectAll(): List<MovieEntity>
+    suspend fun selectAll(): List<MovieEntity>?
 
     @Query("select * from movies where id = :movieId")
     suspend fun selectById(movieId: Int): MovieEntity

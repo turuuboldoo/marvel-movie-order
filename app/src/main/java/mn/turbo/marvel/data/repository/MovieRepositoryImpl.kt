@@ -16,14 +16,19 @@ class MovieRepositoryImpl @Inject constructor(
 ) : MovieRepository {
 
     override suspend fun getMovies(): List<Movie> {
-        withContext(ioDispatcher) {
-            val movies = api.getMovies().data
-                .map { it.toMovieEntity() }
+        val movies = movieDao.selectAll()?.map { it.toMovie() }
 
-            movieDao.insert(movies)
+        return if (movies != null) {
+            movies
+        } else {
+            val moviesFromRemote = api.getMovies().data
+
+            withContext(ioDispatcher) {
+                movieDao.insert(moviesFromRemote.map { it.toMovieEntity() })
+            }
+
+            moviesFromRemote.map { it.toMovie() }
         }
-
-        return movieDao.selectAll().map { it.toMovie() }
     }
 
     override suspend fun getMovieById(movieId: Int): Movie =
