@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.presenter.movie.detail.MovieDetailScreen
 import mn.turbo.marvel.presenter.movie.list.component.MovieListScreen
+import mn.turbo.marvel.presenter.theme.AppTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -18,21 +19,25 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Surface(color = MaterialTheme.colors.background) {
-                val navController = rememberNavController()
-                NavHost(
-                    navController = navController,
-                    startDestination = Screen.MovieListScreen.route
+            AppTheme(darkTheme = true) {
+                Surface(
+                    color = MaterialTheme.colors.background
                 ) {
-                    composable(
-                        route = Screen.MovieListScreen.route
+                    val navController = rememberNavController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = Screen.MovieListScreen.route
                     ) {
-                        MovieListScreen(navController)
-                    }
-                    composable(
-                        route = Screen.MovieDetailScreen.route + "/movieId"
-                    ) {
-                        MovieDetailScreen(navController)
+                        composable(
+                            route = Screen.MovieListScreen.route
+                        ) {
+                            MovieListScreen(navController)
+                        }
+                        composable(
+                            route = Screen.MovieDetailScreen.route + "/movieId"
+                        ) {
+                            MovieDetailScreen(navController)
+                        }
                     }
                 }
             }

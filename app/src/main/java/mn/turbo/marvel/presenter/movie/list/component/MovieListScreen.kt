@@ -1,11 +1,9 @@
 package mn.turbo.marvel.presenter.movie.list.component
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -25,25 +23,28 @@ fun MovieListScreen(
     viewModel: MovieViewModel = hiltViewModel()
 ) {
     val state = viewModel.movieListState.value
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
-        LazyRow(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.Center)
-        ) {
-            state.data?.let { movies ->
-                items(movies) { movie ->
-                    MovieListItem(
-                        movie = movie,
-                        onItemClick = {
-                            navController.navigate(Screen.MovieDetailScreen.route + "/${movie.id}")
-                        }
-                    )
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(3),
+            contentPadding = PaddingValues(16.dp),
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            content = {
+                state.data?.let { movies ->
+                    items(movies) { movie ->
+                        MovieListItem(
+                            movie = movie,
+                            onItemClick = {
+                                navController.navigate(Screen.MovieDetailScreen.route + "/${movie.id}")
+                            }
+                        )
+                    }
                 }
             }
-        }
+        )
 
         if (state.error.isNotBlank()) {
             Text(
