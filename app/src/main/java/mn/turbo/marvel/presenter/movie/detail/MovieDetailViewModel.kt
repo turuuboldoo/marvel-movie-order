@@ -1,5 +1,6 @@
-package mn.turbo.marvel.presenter.movie.viewmodel
+package mn.turbo.marvel.presenter.movie.detail
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,33 +9,37 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import mn.turbo.marvel.common.Constant
 import mn.turbo.marvel.common.Resource
 import mn.turbo.marvel.common.UiState
 import mn.turbo.marvel.domain.model.Movie
-import mn.turbo.marvel.domain.usecase.movie.GetMoviesUseCase
+import mn.turbo.marvel.domain.usecase.movie.GetMovieDetailUseCase
 
 @HiltViewModel
-class MovieViewModel @Inject constructor(
-    private val getMoviesUseCase: GetMoviesUseCase,
+class MovieDetailViewModel @Inject constructor(
+    private val useCase: GetMovieDetailUseCase,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    private val _movieListState = MutableStateFlow(UiState<List<Movie>>())
+    private val _movieListState = MutableStateFlow(UiState<Movie>())
     val movieListState = _movieListState.asStateFlow()
 
     init {
-        getMovies()
+        savedStateHandle.get<Int>(Constant.PARAM_MOVIE_ID)?.let { getMovieDetail(it) }
     }
 
-    private fun getMovies() {
-        getMoviesUseCase().onEach { result ->
+    private fun getMovieDetail(movieId: Int) {
+        useCase(movieId).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _movieListState.value = UiState(
-                        data = result.data ?: emptyList()
+                        data = result.data
                     )
                 }
                 is Resource.Loading -> {
-                    _movieListState.value = UiState(isLoading = true)
+                    _movieListState.value = UiState(
+                        isLoading = true
+                    )
                 }
                 is Resource.Error -> {
                     _movieListState.value = UiState(
