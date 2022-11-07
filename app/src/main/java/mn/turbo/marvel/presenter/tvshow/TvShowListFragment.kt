@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -21,10 +22,6 @@ class TvShowListFragment : Fragment() {
 
     private val viewModel: TvShowViewModel by viewModels()
 
-    private var adapter = TvShowsAdapter { tvShow ->
-        navigateToDetail(tvShow.id)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,10 +33,15 @@ class TvShowListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.adapter = adapter
+        val tvShowsAdapter = TvShowsAdapter { tvShow ->
+            navigateToDetail(tvShow.id)
+        }
+
+        binding.recyclerView.adapter = tvShowsAdapter
 
         collectLatestLifecycleFlow(viewModel.tvShowListState) { state ->
-            adapter.submitList(state.data)
+            binding.progressBar.isVisible = state.isLoading
+            tvShowsAdapter.submitList(state.data)
         }
     }
 

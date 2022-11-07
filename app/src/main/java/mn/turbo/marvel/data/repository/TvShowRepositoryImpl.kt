@@ -16,14 +16,17 @@ class TvShowRepositoryImpl @Inject constructor(
 ) : TvShowRepository {
 
     override suspend fun getTvShows(): List<TvShow> {
-        val tvShows = api.getTvShows().data
-            .map { it.toTvShowEntity() }
+        val tvShows = tvShowDao.selectAll().map { it.toTvShow() }
 
-        withContext(ioDispatcher) {
-            tvShowDao.insert(tvShows)
+        return tvShows.ifEmpty {
+            val tvShowsFromRemote = api.getTvShows().data
+
+            withContext(ioDispatcher) {
+                tvShowDao.insert(tvShowsFromRemote.map { it.toTvShowEntity() })
+            }
+
+            tvShowsFromRemote.map { it.toTvShow() }
         }
-
-        return tvShowDao.selectAll().map { it.toTvShow() }
     }
 
     override suspend fun getTvShowsById(tvShowId: Int): TvShow =
