@@ -8,8 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import coil.request.ImageRequest
 import mn.turbo.marvel.domain.model.Movie
 
 @Composable
@@ -22,12 +24,16 @@ fun MovieListItem(
             .fillMaxSize()
             .clickable { onItemClick(movie) }
     ) {
+        val model = ImageRequest.Builder(LocalContext.current)
+            .data(movie.coverUrl)
+            .crossfade(true)
+            .build()
+
         AsyncImage(
-            model = movie.coverUrl,
+            model = model,
             contentDescription = movie.title,
             contentScale = ContentScale.FillWidth,
-            modifier = Modifier
-                .clip(RoundedCornerShape(12.dp))
+            modifier = Modifier.clip(RoundedCornerShape(12.dp))
         )
     }
 }

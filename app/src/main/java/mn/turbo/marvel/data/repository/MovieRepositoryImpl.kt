@@ -16,11 +16,9 @@ class MovieRepositoryImpl @Inject constructor(
 ) : MovieRepository {
 
     override suspend fun getMovies(): List<Movie> {
-        val movies = movieDao.selectAll()?.map { it.toMovie() }
+        val movies = movieDao.selectAll().map { it.toMovie() }
 
-        return if (movies != null) {
-            movies
-        } else {
+        return movies.ifEmpty {
             val moviesFromRemote = api.getMovies().data
 
             withContext(ioDispatcher) {

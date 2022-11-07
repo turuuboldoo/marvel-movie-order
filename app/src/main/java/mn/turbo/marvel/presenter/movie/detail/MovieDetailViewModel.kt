@@ -6,6 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import mn.turbo.marvel.common.Constant
@@ -13,7 +14,6 @@ import mn.turbo.marvel.common.Resource
 import mn.turbo.marvel.common.UiState
 import mn.turbo.marvel.domain.model.Movie
 import mn.turbo.marvel.domain.usecase.movie.GetMovieDetailUseCase
-import javax.inject.Inject
 
 @HiltViewModel
 class MovieDetailViewModel @Inject constructor(
