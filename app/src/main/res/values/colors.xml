@@ -17,4 +17,6 @@
     <color name="palette_3">#DCD0C3</color>
     <color name="palette_4">#FAFAF8</color>
     <color name="palette_5">#141414</color>
+
+    <color name="color_black_button">#282A2D</color>
 </resources>
