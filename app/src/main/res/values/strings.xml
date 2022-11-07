@@ -5,6 +5,7 @@
 
     <string name="movie">Movie</string>
     <string name="tv_show">TV Show</string>
+    <string name="filter">Filter</string>
 
     <string name="poster_image">poster image</string>
 </resources>
