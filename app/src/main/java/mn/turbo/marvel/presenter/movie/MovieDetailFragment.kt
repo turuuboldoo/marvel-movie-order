@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -54,6 +55,7 @@ class MovieDetailFragment : Fragment(), OnClickListener {
 
         collectLatestLifecycleFlow(viewModel.movieListState) { state ->
             binding.apply {
+                binding.mProgressBar.isVisible = state.isLoading
                 movie = state.data
                 coverImageView.cropTop(state.data?.coverUrl, deviceWidth, deviceWidth)
                 relatedRecyclerView.adapter = relatedAdapter
