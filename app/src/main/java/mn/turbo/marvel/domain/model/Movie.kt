@@ -15,7 +15,7 @@ data class Movie(
     val saga: String? = null,
     val title: String? = null,
     val trailerUrl: String? = null,
-    val relatedMovie: List<RelatedMovie> = emptyList()
+    val relatedMovie: List<RelatedMovie>? = emptyList()
 ) {
     fun getLilDesc(): String {
         return "$releaseDate | $duration minutes"
