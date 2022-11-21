@@ -32,7 +32,9 @@ data class MovieDto(
     @SerializedName("title")
     val title: String,
     @SerializedName("trailer_url")
-    val trailerUrl: String
+    val trailerUrl: String,
+    @SerializedName("related_movies")
+    val relatedMoviesDto: List<RelatedMovieDto>?,
 ) {
     fun toMovie(): Movie {
         return Movie(
@@ -49,7 +51,10 @@ data class MovieDto(
             releaseDate,
             saga,
             title,
-            trailerUrl
+            trailerUrl,
+            relatedMoviesDto?.map {
+                it.toRelatedMovie()
+            }
         )
     }
 
