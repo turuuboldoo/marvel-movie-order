@@ -1,12 +1,15 @@
 package mn.turbo.marvel.di
 
+import android.app.Application
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
+import mn.turbo.marvel.common.ConnectivityObserver
 import mn.turbo.marvel.common.Constant
+import mn.turbo.marvel.common.NetworkConnectionObserver
 import mn.turbo.marvel.data.remote.MarvelApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -47,5 +50,13 @@ object NetworkModule {
                 )
             }
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideNetworkConnection(
+        application: Application
+    ): ConnectivityObserver {
+        return NetworkConnectionObserver(application.applicationContext)
     }
 }

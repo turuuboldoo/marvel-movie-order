@@ -12,106 +12,70 @@
 
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/palette_5">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true">
+            android:layout_height="match_parent">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/collapsing_toolbar"
+            <ImageView
+                android:id="@+id/coverImageView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                app:contentScrim="@android:color/transparent"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:statusBarScrim="@android:color/transparent">
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/mLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="@+id/coverImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-                    <ImageView
-                        android:id="@+id/coverImageView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:contentDescription="@null"
-                        android:scaleType="centerCrop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:srcCompat="@tools:sample/backgrounds/scenic" />
-
-                    <ImageView
-                        android:id="@+id/gradientImageView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:adjustViewBounds="true"
-                        android:contentDescription="@null"
-                        android:scaleType="centerCrop"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/bottom_to_top_transparent_gradient" />
-
-                </FrameLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:orientation="vertical">
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/dp20"
+                    android:paddingTop="@dimen/dp16"
+                    android:paddingEnd="@dimen/dp20"
+                    android:paddingBottom="@dimen/dp16"
+                    android:text="@{movie.getLilDesc()}"
+                    android:textColor="#fff"
+                    android:textSize="11sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/coverImageView"
+                    tools:text="@tools:sample/full_names" />
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:paddingStart="@dimen/dp20"
-                        android:paddingTop="@dimen/dp16"
-                        android:paddingEnd="@dimen/dp20"
-                        android:paddingBottom="@dimen/dp16"
-                        android:text="@{movie.getLilDesc()}"
-                        android:textColor="#fff"
-                        android:textSize="11sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/coverImageView"
-                        tools:text="@tools:sample/full_names" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/trailerButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="18dp"
+                    android:background="@drawable/background_button_black"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    android:text="@string/watch_trailer"
+                    android:textAllCaps="false"
+                    android:textSize="14sp" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/mTitleTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="bottom|center"
-                        android:layout_marginBottom="18dp"
-                        android:background="@drawable/background_button_black"
-                        android:gravity="center"
-                        android:maxLines="2"
-                        android:paddingStart="18dp"
-                        android:paddingEnd="18dp"
-                        android:text="@string/watch_trailer"
-                        android:textAllCaps="false"
-                        android:textSize="14sp" />
-
-                </LinearLayout>
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/titleTextView"
@@ -127,7 +91,7 @@
                 android:textSize="@dimen/sp22"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/coverImageView"
+                app:layout_constraintTop_toBottomOf="@+id/mLinearLayout"
                 tools:text="@tools:sample/full_names" />
 
             <TextView
@@ -145,8 +109,36 @@
                 app:layout_constraintTop_toBottomOf="@+id/titleTextView"
                 tools:text="@tools:sample/lorem/random" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/relatedTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/dp20"
+                android:paddingTop="@dimen/dp20"
+                android:paddingEnd="@dimen/dp20"
+                android:text="@string/related_movies"
+                android:textColor="#fff"
+                app:layout_constraintBottom_toTopOf="@+id/relatedRecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/descTextView" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/relatedRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_16dp"
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/dp20"
+                android:paddingEnd="@dimen/margin_8dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relatedTextView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </layout>

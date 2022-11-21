@@ -12,8 +12,9 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.R
 import mn.turbo.marvel.common.collectLatestLifecycleFlow
-import mn.turbo.marvel.common.setImageUrl
+import mn.turbo.marvel.common.cropTop
 import mn.turbo.marvel.databinding.FragmentMovieDetailBinding
+import mn.turbo.marvel.presenter.movie.adapter.RelatedAdapter
 import mn.turbo.marvel.presenter.movie.viewmodel.MovieDetailViewModel
 
 @AndroidEntryPoint
@@ -44,16 +45,21 @@ class MovieDetailFragment : Fragment(), OnClickListener {
 
         setClickListener()
 
+        val relatedAdapter = RelatedAdapter(deviceWidth) { relatedMovie ->
+            findNavController().navigate(
+                MovieDetailFragmentDirections
+                    .actionMovieDetailFragment(relatedMovie.id)
+            )
+        }
+
         collectLatestLifecycleFlow(viewModel.movieListState) { state ->
-            binding.movie = state.data
+            binding.apply {
+                movie = state.data
+                coverImageView.cropTop(state.data?.coverUrl, deviceWidth, deviceWidth)
+                relatedRecyclerView.adapter = relatedAdapter
+            }
 
-            binding.coverImageView.setImageUrl(state.data?.coverUrl)
-
-//            binding.coverImageView.cropTop(
-//                url = state.data?.coverUrl,
-//                width = deviceWidth,
-//                height = (deviceWidth / 1.5).roundToInt()
-//            )
+            relatedAdapter.submitList(state.data?.relatedMovie)
         }
     }
 
@@ -65,7 +71,7 @@ class MovieDetailFragment : Fragment(), OnClickListener {
     override fun onClick(p0: View?) {
         binding.run {
             when (p0) {
-                coverImageView -> {
+                trailerButton -> {
                     findNavController().navigate(
                         MovieDetailFragmentDirections
                             .actionMovieDetailFragmentToVideoPlayerFragment(
@@ -88,7 +94,7 @@ class MovieDetailFragment : Fragment(), OnClickListener {
         binding.let { layout ->
             layout.descTextView.setOnClickListener(this)
             layout.titleTextView.setOnClickListener(this)
-            layout.coverImageView.setOnClickListener(this)
+            layout.trailerButton.setOnClickListener(this)
         }
     }
 }
