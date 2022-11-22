@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menuHome"
+        android:id="@+id/movieFragment"
+        android:contentDescription="@string/movie"
         android:icon="@drawable/ic_round_movie_24"
         android:title="@string/movie" />
 
     <item
-        android:id="@+id/menuListen"
+        android:id="@+id/tvShowFragment"
+        android:contentDescription="@string/tv_show"
         android:icon="@drawable/ic_round_slideshow_24"
         android:title="@string/tv_show" />
 </menu>

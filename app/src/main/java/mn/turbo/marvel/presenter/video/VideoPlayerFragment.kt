@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebChromeClient
-import android.webkit.WebSettings
 import androidx.fragment.app.Fragment
 import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.databinding.FragmentVideoPlayerBinding
@@ -30,19 +28,19 @@ class VideoPlayerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val videoUrl = arguments?.let { VideoPlayerFragmentArgs.fromBundle(it).videoUrl }
-
-        if (videoUrl != null) {
-            binding.webView.apply {
-                webChromeClient = WebChromeClient()
-                settings.apply {
-                    cacheMode = WebSettings.LOAD_NO_CACHE
-                    javaScriptEnabled = true
-                    domStorageEnabled = true
-                }
-                loadUrl(videoUrl)
-            }
-        }
+//        val videoUrl = arguments?.let { VideoPlayerFragmentArgs.fromBundle(it).videoUrl }
+//
+//        if (videoUrl != null) {
+//            binding.webView.apply {
+//                webChromeClient = WebChromeClient()
+//                settings.apply {
+//                    cacheMode = WebSettings.LOAD_NO_CACHE
+//                    javaScriptEnabled = true
+//                    domStorageEnabled = true
+//                }
+//                loadUrl(videoUrl)
+//            }
+//        }
     }
 
     override fun onDestroyView() {

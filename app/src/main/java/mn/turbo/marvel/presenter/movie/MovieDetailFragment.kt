@@ -49,7 +49,7 @@ class MovieDetailFragment : Fragment(), OnClickListener {
         val relatedAdapter = RelatedAdapter(deviceWidth) { relatedMovie ->
             findNavController().navigate(
                 MovieDetailFragmentDirections
-                    .actionMovieDetailFragment(relatedMovie.id)
+                    .actionMovieDetailFragmentSelf(relatedMovie.id)
             )
         }
 
@@ -74,12 +74,6 @@ class MovieDetailFragment : Fragment(), OnClickListener {
         binding.run {
             when (p0) {
                 trailerButton -> {
-                    findNavController().navigate(
-                        MovieDetailFragmentDirections
-                            .actionMovieDetailFragmentToVideoPlayerFragment(
-                                videoUrl = binding.movie?.trailerUrl ?: ""
-                            )
-                    )
                 }
                 descTextView -> {
                     if (descTextView.maxLines == 3) {
