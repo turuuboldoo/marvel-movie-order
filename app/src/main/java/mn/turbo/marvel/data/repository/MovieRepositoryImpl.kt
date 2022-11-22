@@ -19,7 +19,7 @@ class MovieRepositoryImpl @Inject constructor(
         val movies = movieDao.selectAll().map { it.toMovie() }
 
         return movies.ifEmpty {
-            val movieFromRemote = api.getMovies().data
+            val movieFromRemote = api.getMovies()
             withContext(ioDispatcher) {
                 movieDao.insert(
                     movieFromRemote.map { it.toMovieEntity() }

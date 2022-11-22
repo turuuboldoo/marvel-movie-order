@@ -77,7 +77,3 @@ data class MovieDto(
         )
     }
 }
-
-data class MovieList(
-    val data: List<MovieDto>
-)

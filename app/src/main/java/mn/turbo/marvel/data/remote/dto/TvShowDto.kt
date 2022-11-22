@@ -66,7 +66,3 @@ data class TvShowDto(
         id
     )
 }
-
-data class TvShowList(
-    val data: List<TvShowDto>
-)
