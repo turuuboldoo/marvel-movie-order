@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_movie">
 
         <action
-            android:id="@+id/action_movieFragment_to_movieDetailFragment"
+            android:id="@+id/action_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
@@ -35,11 +35,19 @@
         <action
             android:id="@+id/action_movieDetailFragment_self"
             app:destination="@id/movieDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/movieFragment" />
 
         <action
-            android:id="@+id/action_movieDetailFragment_to_videoPlayerFragment"
-            app:destination="@id/videoPlayerFragment" />
+            android:id="@+id/action_to_videoPlayer"
+            app:destination="@id/trailerActivity"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
 
     </fragment>
 
@@ -50,7 +58,7 @@
         tools:layout="@layout/fragment_tv_show">
 
         <action
-            android:id="@+id/action_tvShowFragment_to_tvShowDetailFragment"
+            android:id="@+id/action_to_tvShowDetailFragment"
             app:destination="@id/tvShowDetailFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
@@ -71,22 +79,26 @@
             app:argType="integer" />
 
         <action
-            android:id="@+id/action_tvShowDetailFragment_to_videoPlayerFragment"
-            app:destination="@id/videoPlayerFragment" />
+            android:id="@+id/action_to_videoPlayer"
+            app:destination="@id/trailerActivity"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
 
     </fragment>
 
-    <fragment
-        android:id="@+id/videoPlayerFragment"
-        android:name="mn.turbo.marvel.presenter.video.VideoPlayerFragment"
-        android:label="Video Player"
-        tools:layout="@layout/fragment_video_player">
+    <activity
+        android:id="@+id/trailerActivity"
+        android:name="mn.turbo.marvel.presenter.video.TrailerActivity"
+        android:label="activity_trailer"
+        tools:layout="@layout/activity_trailer">
 
         <argument
             android:name="trailerUrl"
             app:argType="string"
             app:nullable="true" />
 
-    </fragment>
+    </activity>
 
 </navigation>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/palette_5"
-    tools:context=".presenter.video.VideoPlayerFragment">
+    tools:context=".presenter.video.TrailerActivity">
 
     <WebView
         android:id="@+id/webView"

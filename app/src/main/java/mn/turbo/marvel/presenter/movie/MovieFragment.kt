@@ -34,7 +34,7 @@ class MovieFragment : Fragment() {
         val movieAdapter = MovieAdapter { movie ->
             findNavController().navigate(
                 MovieFragmentDirections
-                    .actionMovieFragmentToMovieDetailFragment(movie.id)
+                    .actionToMovieDetailFragment(movie.id)
             )
         }
 

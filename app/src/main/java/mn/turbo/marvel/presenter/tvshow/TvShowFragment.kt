@@ -36,7 +36,7 @@ class TvShowFragment : Fragment() {
         val tvShowsAdapter = TvShowsAdapter { tvShow ->
             findNavController().navigate(
                 TvShowFragmentDirections
-                    .actionTvShowFragmentToTvShowDetailFragment(tvShow.id)
+                    .actionToTvShowDetailFragment(tvShow.id)
             )
         }
 
