@@ -1,7 +1,6 @@
 package mn.turbo.marvel.presenter.tvshow
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +31,7 @@ class TvShowDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         collectLatestLifecycleFlow(viewModel.tvShowState) { state ->
-            Log.w("123123", "TvShowDetailFragment - ${state.data?.title}")
+            binding.titleTextView.text = state.data?.title
         }
     }
 

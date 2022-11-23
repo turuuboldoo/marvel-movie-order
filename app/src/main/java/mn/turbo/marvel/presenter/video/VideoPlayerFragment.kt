@@ -30,7 +30,7 @@ class VideoPlayerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val videoUrl = arguments?.let { VideoPlayerFragmentArgs.fromBundle(it).videoUrl }
+        val videoUrl = arguments?.let { VideoPlayerFragmentArgs.fromBundle(it).trailerUrl }
 
         if (videoUrl != null) {
             binding.webView.apply {

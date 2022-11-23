@@ -15,7 +15,7 @@ import mn.turbo.marvel.presenter.tvshow.adapter.TvShowsAdapter
 import mn.turbo.marvel.presenter.tvshow.viewmodel.TvShowViewModel
 
 @AndroidEntryPoint
-class TvShowListFragment : Fragment() {
+class TvShowFragment : Fragment() {
 
     private var _binding: FragmentTvShowBinding? = null
     private val binding get() = _binding!!
@@ -34,7 +34,10 @@ class TvShowListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val tvShowsAdapter = TvShowsAdapter { tvShow ->
-            navigateToDetail(tvShow.id)
+            findNavController().navigate(
+                TvShowFragmentDirections
+                    .actionTvShowFragmentToTvShowDetailFragment(tvShow.id)
+            )
         }
 
         binding.recyclerView.adapter = tvShowsAdapter
@@ -48,12 +51,5 @@ class TvShowListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun navigateToDetail(movieId: Int) {
-        findNavController().navigate(
-            TvShowListFragmentDirections
-                .actionTvShowFragmentToTvShowDetailFragment(movieId)
-        )
     }
 }

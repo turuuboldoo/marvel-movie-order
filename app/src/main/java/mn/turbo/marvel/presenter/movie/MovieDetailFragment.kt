@@ -49,7 +49,7 @@ class MovieDetailFragment : Fragment(), OnClickListener {
         val relatedAdapter = RelatedAdapter(deviceWidth) { relatedMovie ->
             findNavController().navigate(
                 MovieDetailFragmentDirections
-                    .actionMovieDetailFragment(relatedMovie.id)
+                    .actionMovieDetailFragmentSelf(relatedMovie.id)
             )
         }
 
@@ -76,9 +76,7 @@ class MovieDetailFragment : Fragment(), OnClickListener {
                 trailerButton -> {
                     findNavController().navigate(
                         MovieDetailFragmentDirections
-                            .actionMovieDetailFragmentToVideoPlayerFragment(
-                                videoUrl = binding.movie?.trailerUrl ?: ""
-                            )
+                            .actionMovieDetailFragmentToVideoPlayerFragment(binding.movie?.trailerUrl)
                     )
                 }
                 descTextView -> {
@@ -88,6 +86,7 @@ class MovieDetailFragment : Fragment(), OnClickListener {
                         descTextView.maxLines = 3
                     }
                 }
+                else -> Unit
             }
         }
     }
