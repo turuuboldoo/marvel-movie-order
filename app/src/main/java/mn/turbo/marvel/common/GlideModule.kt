@@ -60,8 +60,8 @@ fun imageUrl(imageView: ImageView, url: String?) {
 private fun getPlaceholder(): RequestOptions {
     return RequestOptions()
         .transform(RoundedCorners(20))
-        .placeholder(R.drawable.ic_placeholder)
-        .error(R.drawable.ic_placeholder)
+        .placeholder(R.drawable.ic_placeholder_grid)
+        .error(R.drawable.ic_placeholder_grid)
         .diskCacheStrategy(DiskCacheStrategy.DATA)
 }
 
@@ -70,6 +70,6 @@ private fun getCropPlaceHolder(width: Int, height: Int): RequestOptions {
         .transform(
             CropTransformation(width, height, CropTransformation.CropType.TOP)
         )
-        .placeholder(R.drawable.ic_placeholder)
-        .error(R.drawable.ic_placeholder)
+        .placeholder(R.drawable.ic_placeholder_detail)
+        .error(R.drawable.ic_placeholder_detail)
 }
