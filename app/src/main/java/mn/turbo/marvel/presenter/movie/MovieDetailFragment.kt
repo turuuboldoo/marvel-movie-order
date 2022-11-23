@@ -74,6 +74,10 @@ class MovieDetailFragment : Fragment(), OnClickListener {
         binding.run {
             when (p0) {
                 trailerButton -> {
+                    findNavController().navigate(
+                        MovieDetailFragmentDirections
+                            .actionMovieDetailFragmentToVideoPlayerFragment(binding.movie?.trailerUrl)
+                    )
                 }
                 descTextView -> {
                     if (descTextView.maxLines == 3) {
@@ -82,6 +86,7 @@ class MovieDetailFragment : Fragment(), OnClickListener {
                         descTextView.maxLines = 3
                     }
                 }
+                else -> Unit
             }
         }
     }

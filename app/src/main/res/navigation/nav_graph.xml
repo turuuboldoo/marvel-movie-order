@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph.xml"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/movieFragment">
 
     <fragment
@@ -37,6 +37,10 @@
             app:destination="@id/movieDetailFragment"
             app:popUpTo="@id/movieFragment" />
 
+        <action
+            android:id="@+id/action_movieDetailFragment_to_videoPlayerFragment"
+            app:destination="@id/videoPlayerFragment" />
+
     </fragment>
 
     <fragment
@@ -65,6 +69,23 @@
             android:name="tvShowId"
             android:defaultValue="0"
             app:argType="integer" />
+
+        <action
+            android:id="@+id/action_tvShowDetailFragment_to_videoPlayerFragment"
+            app:destination="@id/videoPlayerFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/videoPlayerFragment"
+        android:name="mn.turbo.marvel.presenter.video.VideoPlayerFragment"
+        android:label="Video Player"
+        tools:layout="@layout/fragment_video_player">
+
+        <argument
+            android:name="trailerUrl"
+            app:argType="string"
+            app:nullable="true" />
 
     </fragment>
 
