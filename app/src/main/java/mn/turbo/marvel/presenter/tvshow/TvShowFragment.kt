@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -45,6 +46,10 @@ class TvShowFragment : Fragment() {
         collectLatestLifecycleFlow(viewModel.tvShowListState) { state ->
             binding.progressBar.isVisible = state.isLoading
             tvShowsAdapter.submitList(state.data)
+
+            if (state.error.isNotBlank()) {
+                Toast.makeText(requireContext(), state.error, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

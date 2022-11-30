@@ -72,4 +72,5 @@ private fun getCropPlaceHolder(width: Int, height: Int): RequestOptions {
         )
         .placeholder(R.drawable.ic_placeholder_detail)
         .error(R.drawable.ic_placeholder_detail)
+        .diskCacheStrategy(DiskCacheStrategy.DATA)
 }

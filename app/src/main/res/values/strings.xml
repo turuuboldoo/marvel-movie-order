@@ -10,4 +10,7 @@
     <string name="watch_trailer">Watch trailer</string>
 
     <string name="poster_image">poster image</string>
+
+    <!--messages-->
+    <string name="no_internet">No Internet!</string>
 </resources>
