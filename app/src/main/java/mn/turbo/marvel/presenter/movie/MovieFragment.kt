@@ -10,13 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 import mn.turbo.marvel.R
 import mn.turbo.marvel.common.ConnectivityObserver
 import mn.turbo.marvel.common.collectLatestLifecycleFlow
 import mn.turbo.marvel.databinding.FragmentMovieBinding
 import mn.turbo.marvel.presenter.movie.adapter.MovieAdapter
 import mn.turbo.marvel.presenter.movie.viewmodel.MovieViewModel
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MovieFragment : Fragment() {
