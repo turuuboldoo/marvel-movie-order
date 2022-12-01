@@ -14,4 +14,8 @@ data class TvShow(
     val season: Int,
     val title: String? = null,
     val trailerUrl: String? = null
-)
+) {
+    fun getLilDesc(): String {
+        return "$releaseDate | $numberEpisodes episodes"
+    }
+}

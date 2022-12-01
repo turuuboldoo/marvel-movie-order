@@ -8,9 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.R
-import mn.turbo.marvel.common.cropTop
 import mn.turbo.marvel.common.extension.collectLatestLifecycleFlow
 import mn.turbo.marvel.databinding.FragmentTvShowDetailBinding
 import mn.turbo.marvel.presenter.tvshow.viewmodel.TvShowDetailViewModel
@@ -39,8 +39,6 @@ class TvShowDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val deviceWidth = requireContext().resources.displayMetrics.widthPixels
-
         (activity as AppCompatActivity).apply {
             setSupportActionBar(binding.mToolbar)
             supportActionBar?.let { actionbar ->
@@ -49,10 +47,27 @@ class TvShowDetailFragment : Fragment() {
             }
         }
 
-        collectLatestLifecycleFlow(viewModel.tvShowState) { state ->
+        collectLatestLifecycleFlow(viewModel.tvShowState) { uiState ->
             binding.apply {
-                tvShow = state.data
-                coverImageView.cropTop(state.data?.coverUrl, deviceWidth, deviceWidth)
+                tvShow = uiState.data
+                state = uiState
+            }
+        }
+
+        with(binding) {
+            trailerButton.setOnClickListener {
+                findNavController().navigate(
+                    TvShowDetailFragmentDirections
+                        .actionToVideoPlayer(binding.tvShow?.trailerUrl)
+                )
+            }
+
+            descTextView.setOnClickListener {
+                if (descTextView.maxLines == 3) {
+                    descTextView.maxLines = 100
+                } else {
+                    descTextView.maxLines = 3
+                }
             }
         }
     }
