@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.databinding.ActivityTrailerBinding
@@ -21,7 +22,7 @@ class TrailerActivity : AppCompatActivity() {
             TrailerActivityArgs.fromBundle(it).trailerUrl ?: ""
         }
 
-        if (videoUrl != null) {
+        if (!videoUrl.isNullOrBlank()) {
             binding.webView.apply {
                 webChromeClient = WebChromeClient()
                 settings.apply {
@@ -31,6 +32,9 @@ class TrailerActivity : AppCompatActivity() {
                 }
                 loadUrl(videoUrl)
             }
+        } else {
+            Toast.makeText(this, "Cannot play trailer!", Toast.LENGTH_SHORT).show()
+            finish()
         }
     }
 }
