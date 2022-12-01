@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.R
-import mn.turbo.marvel.common.collectLatestLifecycleFlow
 import mn.turbo.marvel.common.cropTop
+import mn.turbo.marvel.common.extension.collectLatestLifecycleFlow
 import mn.turbo.marvel.databinding.FragmentTvShowDetailBinding
 import mn.turbo.marvel.presenter.tvshow.viewmodel.TvShowDetailViewModel
 

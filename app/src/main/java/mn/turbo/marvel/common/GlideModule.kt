@@ -15,6 +15,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import jp.wasabeef.glide.transformations.CropTransformation
 import mn.turbo.marvel.R
+import mn.turbo.marvel.data.local.preference.AppPreference
 
 @com.bumptech.glide.annotation.GlideModule
 class GlideModule : AppGlideModule() {
@@ -52,6 +53,12 @@ fun ImageView.cropTop(url: String?, width: Int, height: Int) {
 @BindingAdapter("imageUrl")
 fun imageUrl(imageView: ImageView, url: String?) {
     imageView.setImageUrl(url)
+}
+
+@BindingAdapter("cropTopSrc")
+fun cropTopSrc(imageView: ImageView, url: String?) {
+    val width = AppPreference.getInstance().deviceWidth
+    imageView.cropTop(url, width, width)
 }
 
 /**

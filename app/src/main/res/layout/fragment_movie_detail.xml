@@ -9,6 +9,10 @@
             name="movie"
             type="mn.turbo.marvel.domain.model.Movie" />
 
+        <variable
+            name="state"
+            type="mn.turbo.marvel.common.UiState" />
+
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -28,6 +32,7 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@null"
                 android:scaleType="centerCrop"
+                app:cropTopSrc="@{movie.coverUrl}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -80,7 +85,8 @@
                     android:paddingEnd="18dp"
                     android:text="@string/watch_trailer"
                     android:textAllCaps="false"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    app:isVisible="@{state.loading}" />
 
             </LinearLayout>
 
@@ -125,6 +131,7 @@
                 android:paddingEnd="@dimen/dp20"
                 android:text="@string/related_movies"
                 android:textColor="#fff"
+                app:isVisible="@{movie.relatedMovie.size() == 0}"
                 app:layout_constraintBottom_toTopOf="@+id/relatedRecyclerView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -148,6 +155,7 @@
                 android:id="@+id/mProgressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:isVisible="@{!state.loading}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

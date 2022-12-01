@@ -13,7 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import mn.turbo.marvel.R
 import mn.turbo.marvel.common.ConnectivityObserver
-import mn.turbo.marvel.common.collectLatestLifecycleFlow
+import mn.turbo.marvel.common.extension.collectLatestLifecycleFlow
 import mn.turbo.marvel.databinding.FragmentMovieBinding
 import mn.turbo.marvel.presenter.movie.adapter.MovieAdapter
 import mn.turbo.marvel.presenter.movie.viewmodel.MovieViewModel

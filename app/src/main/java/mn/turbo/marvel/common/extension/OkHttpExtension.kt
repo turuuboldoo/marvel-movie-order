@@ -1,4 +1,4 @@
-package mn.turbo.marvel.common
+package mn.turbo.marvel.common.extension
 
 import java.io.IOException
 import kotlin.coroutines.resume
@@ -12,7 +12,6 @@ import okhttp3.*
 suspend fun OkHttpClient.suspendNewCall(request: Request): Response {
     return suspendCancellableCoroutine { continuation ->
         val call = newCall(request)
-
         call.enqueue(object : Callback {
             override fun onResponse(call: Call, response: Response) {
                 continuation.resume(response)

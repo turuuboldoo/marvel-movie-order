@@ -5,15 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.R
-import mn.turbo.marvel.common.collectLatestLifecycleFlow
-import mn.turbo.marvel.common.cropTop
+import mn.turbo.marvel.common.extension.collectLatestLifecycleFlow
+import mn.turbo.marvel.data.local.preference.AppPreference
 import mn.turbo.marvel.databinding.FragmentMovieDetailBinding
 import mn.turbo.marvel.presenter.movie.adapter.RelatedAdapter
 import mn.turbo.marvel.presenter.movie.viewmodel.MovieDetailViewModel
@@ -44,7 +43,7 @@ class MovieDetailFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val deviceWidth = requireContext().resources.displayMetrics.widthPixels
+
         (activity as AppCompatActivity).apply {
             setSupportActionBar(binding.mToolbar)
             supportActionBar?.let { actionbar ->
@@ -55,22 +54,17 @@ class MovieDetailFragment : Fragment(), View.OnClickListener {
         }
 
         setClickListener()
-        setAdapter(deviceWidth)
+        setAdapter()
 
-        collectLatestLifecycleFlow(viewModel.movieListState) { state ->
+        collectLatestLifecycleFlow(viewModel.movieListState) { uiState ->
             binding.apply {
-                binding.mProgressBar.isVisible = state.isLoading
-                binding.trailerButton.isVisible = !state.isLoading
-                movie = state.data
-                coverImageView.cropTop(state.data?.coverUrl, deviceWidth, deviceWidth)
-                relatedRecyclerView.adapter = relatedAdapter
+                state = uiState
+                movie = uiState.data
 
-                if (state.data?.relatedMovie?.isEmpty() == true) {
-                    relatedTextView.visibility = View.GONE
-                }
+                relatedRecyclerView.adapter = relatedAdapter
             }
 
-            relatedAdapter.submitList(state.data?.relatedMovie)
+            relatedAdapter.submitList(uiState.data?.relatedMovie)
         }
     }
 
@@ -107,8 +101,10 @@ class MovieDetailFragment : Fragment(), View.OnClickListener {
         }
     }
 
-    private fun setAdapter(deviceWidth: Int) {
-        relatedAdapter = RelatedAdapter(deviceWidth) { relatedMovie ->
+    private fun setAdapter() {
+        relatedAdapter = RelatedAdapter(
+            AppPreference.getInstance().deviceWidth
+        ) { relatedMovie ->
             findNavController().navigate(
                 MovieDetailFragmentDirections
                     .actionMovieDetailFragmentSelf(relatedMovie.id)

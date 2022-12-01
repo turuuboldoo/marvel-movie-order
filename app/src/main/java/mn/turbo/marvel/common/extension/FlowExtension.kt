@@ -1,4 +1,4 @@
-package mn.turbo.marvel.common
+package mn.turbo.marvel.common.extension
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
