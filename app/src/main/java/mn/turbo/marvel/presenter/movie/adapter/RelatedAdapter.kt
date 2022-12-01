@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import mn.turbo.marvel.R
-import mn.turbo.marvel.common.setImageUrl
 import mn.turbo.marvel.databinding.ItemRelatedMovieBinding
 import mn.turbo.marvel.domain.model.RelatedMovie
 
@@ -40,12 +39,12 @@ class RelatedAdapter(
     }
 
     override fun onBindViewHolder(holder: RelatedAdapter.ViewHolder, position: Int) {
-        getItem(position).let { relatedMovie ->
+        getItem(position).let { mRelatedMovie ->
             holder.binding.apply {
-                imageView.setImageUrl(relatedMovie.coverUrl)
+                relatedMovie = mRelatedMovie
 
                 root.setOnClickListener {
-                    onClick.invoke(relatedMovie)
+                    onClick.invoke(mRelatedMovie)
                 }
             }
         }

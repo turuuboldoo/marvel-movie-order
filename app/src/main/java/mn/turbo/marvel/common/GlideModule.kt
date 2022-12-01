@@ -50,8 +50,8 @@ fun ImageView.cropTop(url: String?, width: Int, height: Int) {
 /**
  * xml binding adapter
  **/
-@BindingAdapter("imageUrl")
-fun imageUrl(imageView: ImageView, url: String?) {
+@BindingAdapter("srcUrl")
+fun srcUrl(imageView: ImageView, url: String?) {
     imageView.setImageUrl(url)
 }
 

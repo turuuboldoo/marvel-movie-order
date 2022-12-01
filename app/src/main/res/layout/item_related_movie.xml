@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data />
+    <data>
+
+        <variable
+            name="relatedMovie"
+            type="mn.turbo.marvel.domain.model.RelatedMovie" />
+
+    </data>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -14,6 +21,7 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:contentDescription="@null"
+            app:srcUrl="@{relatedMovie.coverUrl}"
             tools:src="@tools:sample/backgrounds/scenic" />
 
     </FrameLayout>
