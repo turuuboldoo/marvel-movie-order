@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="movieDetailViewModel"
+            type="mn.turbo.marvel.presenter.movie.viewmodel.MovieDetailViewModel" />
+
+        <variable
             name="movie"
             type="mn.turbo.marvel.domain.model.Movie" />
 
@@ -81,6 +85,7 @@
                     android:background="@drawable/background_button_black"
                     android:gravity="center"
                     android:maxLines="2"
+                    android:onClick="@{(view) -> movieDetailViewModel.launchTrailerFragment(view)}"
                     android:paddingStart="18dp"
                     android:paddingEnd="18dp"
                     android:text="@string/watch_trailer"
@@ -113,6 +118,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="3"
+                android:onClick="@{(view) -> movieDetailViewModel.onDescClick(view)}"
                 android:paddingStart="@dimen/dp20"
                 android:paddingEnd="@dimen/dp20"
                 android:text="@{movie.overview}"

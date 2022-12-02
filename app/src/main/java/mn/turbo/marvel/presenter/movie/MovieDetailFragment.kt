@@ -18,7 +18,7 @@ import mn.turbo.marvel.presenter.movie.adapter.RelatedAdapter
 import mn.turbo.marvel.presenter.movie.viewmodel.MovieDetailViewModel
 
 @AndroidEntryPoint
-class MovieDetailFragment : Fragment(), View.OnClickListener {
+class MovieDetailFragment : Fragment() {
 
     private var _binding: FragmentMovieDetailBinding? = null
     private val binding get() = _binding!!
@@ -53,11 +53,12 @@ class MovieDetailFragment : Fragment(), View.OnClickListener {
             }
         }
 
-        setClickListener()
         setAdapter()
 
         collectLatestLifecycleFlow(viewModel.movieListState) { uiState ->
             binding.apply {
+                lifecycleOwner = this@MovieDetailFragment
+                movieDetailViewModel = viewModel
                 state = uiState
                 movie = uiState.data
 
@@ -71,34 +72,6 @@ class MovieDetailFragment : Fragment(), View.OnClickListener {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    override fun onClick(p0: View?) {
-        binding.run {
-            when (p0) {
-                trailerButton -> {
-                    findNavController().navigate(
-                        MovieDetailFragmentDirections
-                            .actionToVideoPlayer(binding.movie?.trailerUrl)
-                    )
-                }
-                descTextView -> {
-                    if (descTextView.maxLines == 3) {
-                        descTextView.maxLines = 100
-                    } else {
-                        descTextView.maxLines = 3
-                    }
-                }
-            }
-        }
-    }
-
-    private fun setClickListener() {
-        binding.let { layout ->
-            layout.descTextView.setOnClickListener(this)
-            layout.titleTextView.setOnClickListener(this)
-            layout.trailerButton.setOnClickListener(this)
-        }
     }
 
     private fun setAdapter() {
