@@ -13,6 +13,10 @@
             name="state"
             type="mn.turbo.marvel.common.UiState" />
 
+        <variable
+            name="tvShowDetailViewModel"
+            type="mn.turbo.marvel.presenter.tvshow.viewmodel.TvShowDetailViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,6 +95,7 @@
                 android:background="@drawable/background_button_black"
                 android:gravity="center"
                 android:maxLines="2"
+                android:onClick="@{(view) -> tvShowDetailViewModel.launchTrailerFragment(view)}"
                 android:paddingStart="18dp"
                 android:paddingEnd="18dp"
                 android:text="@string/watch_trailer"
@@ -106,6 +111,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="3"
+            android:onClick="@{(view) -> tvShowDetailViewModel.onDescClick(view)}"
             android:paddingStart="@dimen/dp20"
             android:paddingTop="@dimen/dp20"
             android:paddingEnd="@dimen/dp20"

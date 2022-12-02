@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.R
 import mn.turbo.marvel.common.extension.collectLatestLifecycleFlow
@@ -49,25 +48,10 @@ class TvShowDetailFragment : Fragment() {
 
         collectLatestLifecycleFlow(viewModel.tvShowState) { uiState ->
             binding.apply {
+                lifecycleOwner = this@TvShowDetailFragment
+                tvShowDetailViewModel = viewModel
                 tvShow = uiState.data
                 state = uiState
-            }
-        }
-
-        with(binding) {
-            trailerButton.setOnClickListener {
-                findNavController().navigate(
-                    TvShowDetailFragmentDirections
-                        .actionToVideoPlayer(binding.tvShow?.trailerUrl)
-                )
-            }
-
-            descTextView.setOnClickListener {
-                if (descTextView.maxLines == 3) {
-                    descTextView.maxLines = 100
-                } else {
-                    descTextView.maxLines = 3
-                }
             }
         }
     }
