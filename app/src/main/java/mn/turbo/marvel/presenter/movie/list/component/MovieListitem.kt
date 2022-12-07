@@ -7,11 +7,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import coil.request.CachePolicy
 import coil.request.ImageRequest
+import kotlinx.coroutines.Dispatchers
 import mn.turbo.marvel.domain.model.Movie
 
 @Composable
@@ -27,13 +28,14 @@ fun MovieListItem(
         val model = ImageRequest.Builder(LocalContext.current)
             .data(movie.coverUrl)
             .crossfade(true)
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .dispatcher(Dispatchers.IO)
             .build()
 
         AsyncImage(
             model = model,
             contentDescription = movie.title,
-            contentScale = ContentScale.FillWidth,
-            modifier = Modifier.clip(RoundedCornerShape(12.dp))
+            modifier = Modifier.clip(RoundedCornerShape(8.dp))
         )
     }
 }
