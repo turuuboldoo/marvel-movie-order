@@ -22,7 +22,9 @@ class TvShowRepositoryImpl @Inject constructor(
             val tvShowsFromRemote = api.getTvShows().data
 
             withContext(ioDispatcher) {
-                tvShowDao.insert(tvShowsFromRemote.map { it.toTvShowEntity() })
+                tvShowDao.insert(
+                    tvShowEntity = tvShowsFromRemote.map { it.toTvShowEntity() }
+                )
             }
 
             tvShowsFromRemote.map { it.toTvShow() }

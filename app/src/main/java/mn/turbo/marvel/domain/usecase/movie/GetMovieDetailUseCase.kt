@@ -15,7 +15,7 @@ class GetMovieDetailUseCase @Inject constructor(
     operator fun invoke(movieId: Int): Flow<Resource<Movie>> = flow {
         emit(Resource.Loading())
         try {
-            val movie = repository.getMovieById(movieId)
+            val movie = repository.getMovieById(movieId = movieId)
 
             emit(Resource.Success(movie))
         } catch (e: HttpException) {

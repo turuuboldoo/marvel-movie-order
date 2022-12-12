@@ -22,7 +22,7 @@ class MovieRepositoryImpl @Inject constructor(
             val movieFromRemote = api.getMovies().data
             withContext(ioDispatcher) {
                 movieDao.insert(
-                    movieFromRemote.map { it.toMovieEntity() }
+                    movieEntity = movieFromRemote.map { it.toMovieEntity() }
                 )
             }
             movieFromRemote.map { it.toMovie() }

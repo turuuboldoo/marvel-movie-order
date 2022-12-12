@@ -15,7 +15,7 @@ class GetTvShowDetailUseCase @Inject constructor(
     operator fun invoke(tvShowId: Int): Flow<Resource<TvShow>> = flow {
         emit(Resource.Loading())
         try {
-            val tvShow = repository.getTvShowsById(tvShowId)
+            val tvShow = repository.getTvShowsById(tvShowId = tvShowId)
 
             emit(Resource.Success(tvShow))
         } catch (e: HttpException) {

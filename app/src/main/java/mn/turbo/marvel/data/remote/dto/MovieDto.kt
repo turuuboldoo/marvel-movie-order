@@ -38,21 +38,21 @@ data class MovieDto(
 ) {
     fun toMovie(): Movie {
         return Movie(
-            boxOffice,
-            chronology,
-            coverUrl,
-            directedBy,
-            duration,
-            id,
-            imdbId,
-            overview,
-            phase,
-            postCreditScenes,
-            releaseDate,
-            saga,
-            title,
-            trailerUrl,
-            relatedMoviesDto?.map {
+            boxOffice = boxOffice,
+            chronology = chronology,
+            coverUrl = coverUrl,
+            directedBy = directedBy,
+            duration = duration,
+            id = id,
+            imdbId = imdbId,
+            overview = overview,
+            phase = phase,
+            postCreditScenes = postCreditScenes,
+            releaseDate = releaseDate,
+            saga = saga,
+            title = title,
+            trailerUrl = trailerUrl,
+            relatedMovie = relatedMoviesDto?.map {
                 it.toRelatedMovie()
             }
         )
@@ -60,20 +60,20 @@ data class MovieDto(
 
     fun toMovieEntity(): MovieEntity {
         return MovieEntity(
-            boxOffice,
-            chronology,
-            coverUrl,
-            directedBy,
-            duration,
-            imdbId,
-            overview,
-            phase,
-            postCreditScenes,
-            releaseDate,
-            saga,
-            title,
-            trailerUrl,
-            id
+            boxOffice = boxOffice,
+            chronology = chronology,
+            coverUrl = coverUrl,
+            directedBy = directedBy,
+            duration = duration,
+            imdbId = imdbId,
+            overview = overview,
+            phase = phase,
+            postCreditScenes = postCreditScenes,
+            releaseDate = releaseDate,
+            saga = saga,
+            title = title,
+            trailerUrl = trailerUrl,
+            id = id
         )
     }
 }

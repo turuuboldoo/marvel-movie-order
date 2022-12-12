@@ -34,37 +34,39 @@ data class TvShowDto(
 ) {
     fun toTvShow(): TvShow {
         return TvShow(
-            coverUrl,
-            directedBy,
-            id,
-            imdbId,
-            lastAiredDate,
-            numberEpisodes,
-            overview,
-            phase,
-            releaseDate,
-            saga,
-            season,
-            title,
-            trailerUrl
+            coverUrl = coverUrl,
+            directedBy = directedBy,
+            id = id,
+            imdbId = imdbId,
+            lastAiredDate = lastAiredDate,
+            numberEpisodes = numberEpisodes,
+            overview = overview,
+            phase = phase,
+            releaseDate = releaseDate,
+            saga = saga,
+            season = season,
+            title = title,
+            trailerUrl = trailerUrl
         )
     }
 
-    fun toTvShowEntity() = TvShowEntity(
-        coverUrl,
-        directedBy,
-        imdbId,
-        lastAiredDate,
-        numberEpisodes,
-        overview,
-        phase,
-        releaseDate,
-        saga,
-        season,
-        title,
-        trailerUrl,
-        id
-    )
+    fun toTvShowEntity(): TvShowEntity {
+        return TvShowEntity(
+            coverUrl = coverUrl,
+            directedBy = directedBy,
+            imdbId = imdbId,
+            lastAiredDate = lastAiredDate,
+            numberEpisodes = numberEpisodes,
+            overview = overview,
+            phase = phase,
+            releaseDate = releaseDate,
+            saga = saga,
+            season = season,
+            title = title,
+            trailerUrl = trailerUrl,
+            id = id
+        )
+    }
 }
 
 data class TvShowList(
