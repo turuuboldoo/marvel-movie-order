@@ -12,6 +12,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.module.AppGlideModule
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory
 import jp.wasabeef.glide.transformations.CropTransformation
 import mn.turbo.marvel.R
@@ -35,6 +36,7 @@ fun ImageView.setImageUrl(url: String?) {
     Glide.with(this)
         .load(url)
         .transition(DrawableTransitionOptions.withCrossFade(factory))
+        .override(SIZE_ORIGINAL)
         .apply(getPlaceholder())
         .into(this)
 }
@@ -43,6 +45,7 @@ fun ImageView.cropTop(url: String?, width: Int, height: Int) {
     Glide.with(this)
         .load(url)
         .transition(DrawableTransitionOptions.withCrossFade(factory))
+        .override(width, height)
         .apply(getCropPlaceHolder(width, height))
         .into(this)
 }
