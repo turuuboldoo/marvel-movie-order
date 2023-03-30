@@ -2,19 +2,16 @@ package mn.turbo.marvel.presenter
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.*
 import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.R
 import mn.turbo.marvel.data.local.preference.AppPreference
 import mn.turbo.marvel.databinding.ActivityMainBinding
 
+@OptIn(NavigationUiSaveStateControl::class)
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
@@ -23,8 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityMainBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_main)
+        val binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
@@ -36,8 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         navController = navHostFragment.findNavController()
 
-        binding.bottomNavigationView.setupWithNavController(navController)
-
+        NavigationUI.setupWithNavController(binding.bottomNavigationView, navController, false)
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.movieFragment, R.id.tvShowFragment)
         )
