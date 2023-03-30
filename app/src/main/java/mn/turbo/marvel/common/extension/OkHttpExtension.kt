@@ -8,7 +8,7 @@ import okhttp3.*
 
 /**
  * callback interface to suspend function
- **/
+ */
 suspend fun OkHttpClient.suspendNewCall(request: Request): Response {
     return suspendCancellableCoroutine { continuation ->
         val call = newCall(request)

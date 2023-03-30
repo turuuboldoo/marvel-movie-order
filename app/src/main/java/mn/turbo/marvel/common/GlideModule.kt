@@ -52,7 +52,7 @@ fun ImageView.cropTop(url: String?, width: Int, height: Int) {
 
 /**
  * xml binding adapter
- **/
+ */
 @BindingAdapter("srcUrl")
 fun srcUrl(imageView: ImageView, url: String?) {
     imageView.setImageUrl(url)
@@ -60,13 +60,17 @@ fun srcUrl(imageView: ImageView, url: String?) {
 
 @BindingAdapter("cropTopSrc")
 fun cropTopSrc(imageView: ImageView, url: String?) {
-    val width = AppPreference.getInstance().deviceWidth
+    val width = if (AppPreference.getInstance().deviceWidth == 0)
+        imageView.context.resources.displayMetrics.widthPixels
+    else
+        AppPreference.getInstance().deviceWidth
+
     imageView.cropTop(url, width, width)
 }
 
 /**
  * placeholders
- **/
+ */
 private fun getPlaceholder(): RequestOptions {
     return RequestOptions()
         .transform(RoundedCorners(20))
