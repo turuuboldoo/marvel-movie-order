@@ -11,6 +11,7 @@ import mn.turbo.marvel.common.Constant
 import mn.turbo.marvel.data.local.MarvelDatabase
 import mn.turbo.marvel.data.local.dao.MovieDao
 import mn.turbo.marvel.data.local.dao.TvShowDao
+import mn.turbo.marvel.data.local.preference.AppPreference
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -19,7 +20,7 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(
-        app: Application
+        app: Application,
     ): MarvelDatabase {
         return Room.databaseBuilder(
             app.applicationContext,
@@ -31,7 +32,7 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideMovieDao(
-        db: MarvelDatabase
+        db: MarvelDatabase,
     ): MovieDao {
         return db.movieDao
     }
@@ -39,8 +40,16 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideTvShowDao(
-        db: MarvelDatabase
+        db: MarvelDatabase,
     ): TvShowDao {
         return db.tvShowDao
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppPreference(
+        app: Application,
+    ): AppPreference {
+        return AppPreference(app.applicationContext)
     }
 }

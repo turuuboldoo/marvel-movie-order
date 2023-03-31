@@ -3,11 +3,12 @@ package mn.turbo.marvel.data.local.preference
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import mn.turbo.marvel.common.SingletonHolder
 
-class AppPreference private constructor(val context: Context) {
+class AppPreference(
+    context: Context
+) {
 
-    companion object : SingletonHolder<AppPreference, Context>(::AppPreference) {
+    companion object {
         private const val TAG = "AppPreference"
         private const val WIDTH = "width"
         private const val HEIGHT = "height"
