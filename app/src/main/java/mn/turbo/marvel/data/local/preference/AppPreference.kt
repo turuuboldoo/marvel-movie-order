@@ -3,8 +3,9 @@ package mn.turbo.marvel.data.local.preference
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import javax.inject.Inject
 
-class AppPreference(
+class AppPreference @Inject constructor(
     context: Context
 ) {
 
