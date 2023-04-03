@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "89e7ad5f58fcf53b83d5105292239b04",
+    "identityHash": "ecb88b57081bb32e29715498f2ba22b5",
     "entities": [
       {
         "tableName": "movies",
@@ -94,10 +94,10 @@
           }
         ],
         "primaryKey": {
+          "autoGenerate": false,
           "columnNames": [
             "id"
-          ],
-          "autoGenerate": false
+          ]
         },
         "indices": [],
         "foreignKeys": []
@@ -186,36 +186,10 @@
           }
         ],
         "primaryKey": {
+          "autoGenerate": false,
           "columnNames": [
             "id"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
-      {
-        "tableName": "related_movies",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`relatedMovies` TEXT, `movieId` INTEGER, PRIMARY KEY(`movieId`))",
-        "fields": [
-          {
-            "fieldPath": "relatedMovies",
-            "columnName": "relatedMovies",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "movieId",
-            "columnName": "movieId",
-            "affinity": "INTEGER",
-            "notNull": false
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "movieId"
-          ],
-          "autoGenerate": false
+          ]
         },
         "indices": [],
         "foreignKeys": []
@@ -224,7 +198,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '89e7ad5f58fcf53b83d5105292239b04')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ecb88b57081bb32e29715498f2ba22b5')"
     ]
   }
 }

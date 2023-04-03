@@ -32,6 +32,5 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun getMovieById(movieId: Int): Movie =
         withContext(ioDispatcher) {
             api.getMovieById(movieId).toMovie()
-//            movieDao.selectById(movieId).toMovie()
         }
 }

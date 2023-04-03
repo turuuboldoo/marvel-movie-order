@@ -22,10 +22,10 @@ object RepositoryModule {
     @Singleton
     fun provideMovieRepository(
         api: MarvelApi,
-        dao: MovieDao,
+        movieDao: MovieDao,
         @IoDispatcher ioDispatcher: CoroutineDispatcher
     ): MovieRepository {
-        return MovieRepositoryImpl(api, dao, ioDispatcher)
+        return MovieRepositoryImpl(api, movieDao, ioDispatcher)
     }
 
     @Provides
