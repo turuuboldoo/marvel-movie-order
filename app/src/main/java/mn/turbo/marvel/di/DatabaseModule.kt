@@ -10,6 +10,7 @@ import javax.inject.Singleton
 import mn.turbo.marvel.common.Constant
 import mn.turbo.marvel.data.local.MarvelDatabase
 import mn.turbo.marvel.data.local.dao.MovieDao
+import mn.turbo.marvel.data.local.dao.RelatedMoviesDao
 import mn.turbo.marvel.data.local.dao.TvShowDao
 import mn.turbo.marvel.data.local.preference.AppPreference
 
@@ -43,6 +44,14 @@ object DatabaseModule {
         db: MarvelDatabase,
     ): TvShowDao {
         return db.tvShowDao
+    }
+
+    @Provides
+    @Singleton
+    fun provideRelatedMoviesDao(
+        db: MarvelDatabase
+    ): RelatedMoviesDao {
+        return db.relatedMoviesDao
     }
 
     @Provides

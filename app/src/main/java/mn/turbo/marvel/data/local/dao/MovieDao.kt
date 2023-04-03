@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import mn.turbo.marvel.data.local.entiry.MovieEntity
-import mn.turbo.marvel.data.local.entiry.RelatedMoviesEntity
 
 @Dao
 interface MovieDao {
@@ -21,7 +20,4 @@ interface MovieDao {
 
     @Query("select * from movies where id = :movieId")
     suspend fun selectById(movieId: Int): MovieEntity
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRelatedMovie(relatedMoviesEntity: RelatedMoviesEntity)
 }
