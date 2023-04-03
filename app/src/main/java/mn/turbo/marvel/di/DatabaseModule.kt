@@ -6,12 +6,11 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 import mn.turbo.marvel.common.Constant
 import mn.turbo.marvel.data.local.MarvelDatabase
 import mn.turbo.marvel.data.local.dao.MovieDao
 import mn.turbo.marvel.data.local.dao.TvShowDao
-import mn.turbo.marvel.data.local.preference.AppPreference
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -43,13 +42,5 @@ object DatabaseModule {
         db: MarvelDatabase,
     ): TvShowDao {
         return db.tvShowDao
-    }
-
-    @Provides
-    @Singleton
-    fun provideAppPreference(
-        app: Application,
-    ): AppPreference {
-        return AppPreference(app.applicationContext)
     }
 }

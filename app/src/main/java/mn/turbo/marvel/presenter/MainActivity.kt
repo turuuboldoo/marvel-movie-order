@@ -7,9 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.*
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 import mn.turbo.marvel.R
-import mn.turbo.marvel.data.local.preference.AppPreference
 import mn.turbo.marvel.databinding.ActivityMainBinding
 
 @OptIn(NavigationUiSaveStateControl::class)
@@ -19,17 +17,12 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
 
-    @Inject
-    lateinit var appPreference: AppPreference
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-
-        setAppSetting()
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragmentContainerView) as NavHostFragment
@@ -45,12 +38,5 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration)
-    }
-
-    private fun setAppSetting() {
-        appPreference.apply {
-            putDeviceWidth(resources.displayMetrics.widthPixels)
-            putDeviceHeight(resources.displayMetrics.heightPixels)
-        }
     }
 }

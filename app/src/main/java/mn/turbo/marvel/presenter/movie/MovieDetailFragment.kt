@@ -10,19 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 import mn.turbo.marvel.R
 import mn.turbo.marvel.common.extension.collectLatestLifecycleFlow
-import mn.turbo.marvel.data.local.preference.AppPreference
 import mn.turbo.marvel.databinding.FragmentMovieDetailBinding
 import mn.turbo.marvel.presenter.movie.adapter.RelatedAdapter
 import mn.turbo.marvel.presenter.movie.viewmodel.MovieDetailViewModel
 
 @AndroidEntryPoint
 class MovieDetailFragment : Fragment() {
-
-    @Inject
-    lateinit var appPreference: AppPreference
 
     private var _binding: FragmentMovieDetailBinding? = null
     private val binding get() = _binding!!
@@ -80,7 +75,7 @@ class MovieDetailFragment : Fragment() {
 
     private fun setAdapter() {
         relatedAdapter = RelatedAdapter(
-            appPreference.deviceWidth
+            deviceWidth = requireContext().resources.displayMetrics.widthPixels
         ) { relatedMovie ->
             findNavController().navigate(
                 MovieDetailFragmentDirections
