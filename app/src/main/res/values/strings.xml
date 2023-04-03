@@ -12,5 +12,5 @@
     <string name="poster_image">poster image</string>
 
     <!--messages-->
-    <string name="no_internet">No Internet!</string>
+    <string name="no_internet">Please check your connection!</string>
 </resources>
