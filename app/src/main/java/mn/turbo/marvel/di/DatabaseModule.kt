@@ -6,11 +6,11 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 import mn.turbo.marvel.common.Constant
 import mn.turbo.marvel.data.local.MarvelDatabase
 import mn.turbo.marvel.data.local.dao.MovieDao
 import mn.turbo.marvel.data.local.dao.TvShowDao
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
