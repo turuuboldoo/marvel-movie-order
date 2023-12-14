@@ -1,4 +1,4 @@
-package mn.turbo.marvel.presenter.movie.list.component
+package mn.turbo.marvel.presenter.movie.list
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import mn.turbo.marvel.presenter.Screen
-import mn.turbo.marvel.presenter.movie.list.MovieViewModel
+import mn.turbo.marvel.presenter.movie.list.component.MovieListItem
 
 @Composable
 fun MovieListScreen(
@@ -32,19 +32,18 @@ fun MovieListScreen(
             contentPadding = PaddingValues(16.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
-            content = {
-                state.data?.let { movies ->
-                    items(movies) { movie ->
-                        MovieListItem(
-                            movie = movie,
-                            onItemClick = {
-                                navController.navigate(Screen.MovieDetailScreen.route + "/${movie.id}")
-                            }
-                        )
-                    }
+        ) {
+            state.data?.let { movies ->
+                items(movies) { movie ->
+                    MovieListItem(
+                        movie = movie,
+                        onItemClick = {
+                            navController.navigate(Screen.MovieDetailScreen.route + "/${movie.id}")
+                        }
+                    )
                 }
             }
-        )
+        }
 
         if (state.error.isNotBlank()) {
             Text(

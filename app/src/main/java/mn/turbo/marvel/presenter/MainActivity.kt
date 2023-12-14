@@ -10,7 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
 import mn.turbo.marvel.presenter.movie.detail.MovieDetailScreen
-import mn.turbo.marvel.presenter.movie.list.component.MovieListScreen
+import mn.turbo.marvel.presenter.movie.list.MovieListScreen
 import mn.turbo.marvel.presenter.theme.AppTheme
 
 @AndroidEntryPoint
